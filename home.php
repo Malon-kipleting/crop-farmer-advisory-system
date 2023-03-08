@@ -6,53 +6,35 @@ $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
-        <link rel="stylesheet" href="css/w3css.css">
-      
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-       <script type="text/javascript" src="js/cufon-yui.js"></script>
-       <script type="text/javascript" src="js/arial.js"></script>
-       <script type="text/javascript" src="js/cuf_run.js"></script>
+  <title>Home</title>
+  <?php
+  include './components/header.php';
+  ?>
     </head>
 <body class="w3-mobile w3-responsive">
-        <div id=""> 
-            <fieldset class="w3-green">
-                <div id="" >
-            <h1>Crop Farmer Advisory System </h1>
-            <div class="w3-bar w3-black">
-                <a href="home.php" class="w3-bar-item w3-button w3-gray">Home</a>
-                <a href="manage.php" class="w3-bar-item w3-button">Manage farm</a>
-                <a href="news.php" class="w3-bar-item w3-button">News</a>
-                <a href="forum.php" class="w3-bar-item w3-button">Forum</a>
-                <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
-                <div class="w3-bar-item w3-right"> 
-                Welcome: <?php echo $name; ?>                
-  <a  href='logout.php' style="color:red">Log out</a>
-                </div>   
-            </div>
-        </div>
-            </fieldset>
-                <br>
-             
-    </div>
-    <div class="headert_text_resize"> <img src="images/pic2.jpg" alt="" width="970" height="338" /> </div>
+
+<!--navbar--> 
+<?php
+include './components/navbar.php';
+?>
+
+    <div class="headert_text_resize"> <img src="Images/images (2).jpg" alt="" width="970" height="338" /> </div>
     
   </div>
   <div class="w3-content " >
     <div class="w3-container" >
       <div class="left">
-        <h2>Potato farming adapting technology<br />
-          <span> March 16, 2019 </span> </h2>
-        <img src="images/pic3.jpg" alt="" width="585" height="236" />
+        <h2>Crop farming adapting technology<br />
+          <span> Jan, 2023 </span> </h2>
+        <img src="Images/images (1).jpg" alt="" width="585" height="236" />
         <div class="clr"></div>
         
         <p>Smart potato farming advisory system is simple a system that makes use of available information
 to give the farmer what he should do when faced with different situations during his farming </p>
         <!--<p> <a href="#">Read more</a><br />-->
         </p>
-        <h2>Why Smart Potato Farming Advisory System <br /></h2>
-        <img src="images/pic1.jpg" alt="" width="585" height="236" />
+        <h2>Why Crop Framers Advisory System <br /></h2>
+        <img src="Images/download (1).jpg" alt="" width="585" height="236" />
         <div class="clr"></div>
         <p>Many farmers suffer from loses in their farms which could be easily be avoided. For instance,
 during rainy season most farmers don’t know what type of pesticide of medicine to spray their
@@ -95,12 +77,12 @@ of production of potatoes.</p>
     <div class="FBG_resize">
       <div class="blok">
         <h2><span>Image</span> Gallery</h2>
-        <img src="images/potat.jpg" alt="" width="68" height="68" />
-        <img src="images/potato1.jpg" alt="" width="68" height="68" />
-        <img src="images/gallery_3.gif" alt="" width="68" height="68" />
-        <img src="images/potato-farmers-in-kenya.jpg" alt="" width="68" height="68" />
-        <img src="images/potato2.jpg" alt="" width="68" height="68" />
-        <img src="images/potatoes_from_a_Kenyan_farmer.jpg" alt="" width="68" height="68" />
+        <img src="Images/download (2).jpg" alt="" width="68" height="68" />
+        <img src="Images/download.jpg" alt="" width="68" height="68" />
+        <img src="Images/gettyimages-1248228512-612x612.jpg" alt="" width="68" height="68" />
+        <img src="Images/istockphoto-1320570551-170667a.jpg" alt="" width="68" height="68" />
+        <img src="Images/modern-technology-agriculture-green-seedling-icons-modern-technology-agriculture-green-seedling-icons-182231893.jpg" alt="" width="68" height="68" />
+        <img src="Images/smart-farmer-concept-using-smartphone-260nw-1627018138.webp" alt="" width="68" height="68" />
         <div class="clr"></div>
         <h2>Contact Info </h2>
         <p><strong>Phone</strong>: +254713447936<br />
@@ -132,9 +114,9 @@ used.<br>
     </div>
   </div>
                 
-                <div id="footer" class="w3-footer w3-center w3-green">
-                  Crop Farmer's Advisory System: A case of Best Practices &copy; 2023
-            </div>
+            <?php
+include './components/footer.php';
+            ?>
         </div>
     </body>
 </html>

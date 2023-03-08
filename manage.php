@@ -81,7 +81,15 @@ document.getElementById("demo124").innerHTML = "no county selected";
             <h1>Smart potato farmer advisory system</h1>
             <div class="w3-bar w3-black">
                 <a href="home.php" class="w3-bar-item w3-button">Home</a>
-                <a href="manage.php" class="w3-bar-item w3-button w3-gray">Manage farm</a>
+                <div class="w3-dropdown-hover">
+  <a href="manage.php" class="w3-bar-item w3-button w3-gray">Manage farm</a>
+  <div class="w3-dropdown-content w3-bar-block w3-border">
+    <button onclick="myFunction('Demo1')" class="w3-btn-block w3-left-align">Add Farm</button>
+    <a href="manage_animals.php" class="w3-bar-item w3-button">Manage Farm</a>
+    <a href="manage_equipment.php" class="w3-bar-item w3-button">Get Advice</a>
+  </div>
+</div>
+
                 <a href="news.php" class="w3-bar-item w3-button">News</a>
                 <a href="forum.php" class="w3-bar-item w3-button">Forum</a>
                 <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
@@ -125,10 +133,8 @@ document.getElementById("demo124").innerHTML = "no county selected";
   <button onclick="myFunction('Demo2')" class="w3-btn-block w3-left-align">Manage Farm</button>
   <div id="Demo2" class="w3-accordion-content w3-container">
     <h4>Manage your farm</h4>
-    <fieldset>
-
     <p>Select Farm</p>
-    <form method="post" action="farmManage.jsp">
+    <form method="post" action="farmManage.html">
         <input type="text" id="search" class="w3-round" name="farm_name" > <p></p>
         <input type="submit" value="search farm">
     </form>

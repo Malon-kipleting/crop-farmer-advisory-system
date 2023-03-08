@@ -14,7 +14,7 @@
                 <h2>Crop Farmer's Advisory System: A case of Best Practices </h2>
             </div>
             
-            <div id="main" class="w3-center w3-card-2 w3-responsive w3-mobile" style="width: 40%; float: right;"> 
+            <div id="main" class="w3-center w3-card-2 w3-responsive w3-mobile" style="width: 50%; float: left;"> 
                 <form class="w3-formfield" action="connection.php" method="POST">
                 <fieldset>
                     <h4><b>log in</b></h4>
