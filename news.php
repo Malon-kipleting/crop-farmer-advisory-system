@@ -17,9 +17,7 @@
             <div class="w3-bar w3-black">
                 <a href="home.php" class="w3-bar-item w3-button">Home</a>
                 <a href="manage.php" class="w3-bar-item w3-button">Manage farm</a>
-                <a href="news.php" class="w3-bar-item w3-button w3-gray">News</a>
-                <a href="forum.php" class="w3-bar-item w3-button">Forum</a>
-                <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
+                <a href="news.php" class="w3-bar-item w3-button w3-gray">Update</a>
                 <div class="w3-bar-item w3-right">
 <a  href='logout.php'>Log out</a>
                 </div>

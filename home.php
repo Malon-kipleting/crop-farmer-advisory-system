@@ -29,7 +29,7 @@ include './components/navbar.php';
         <img src="Images/images (1).jpg" alt="" width="585" height="236" />
         <div class="clr"></div>
         
-        <p>Smart potato farming advisory system is simple a system that makes use of available information
+        <p>Crop farmer’s advisory system is simple a system that makes use of available information
 to give the farmer what he should do when faced with different situations during his farming </p>
         <!--<p> <a href="#">Read more</a><br />-->
         </p>
@@ -38,32 +38,29 @@ to give the farmer what he should do when faced with different situations during
         <div class="clr"></div>
         <p>Many farmers suffer from loses in their farms which could be easily be avoided. For instance,
 during rainy season most farmers don’t know what type of pesticide of medicine to spray their
-crops. Without any advice, the farmer’s produce go down since the potatoes’ fertilizers is washed
+crops. Without any advice, the farmer’s produce go down since the crops' fertilizers is washed
 away by the rain water.
-Potato is one of the foods that most Kenyan families eat, hence its security is vital to the nation,
-and so in order to make this not to big a big issue, its important to use the system since it will
+Food security is a crucial problem facing our country every season there is drougt. Hence ensuring that food is available to the nation at all the seasons,
+its important to use the system since it will
 help improve the food security by advising the farmers so that we could have an increased level
-of production of potatoes.</p>
+of crop production .</p>
         <!--<p><a href="#">Read more</a></p>-->
       </div>
       <div class="right">
         <h2>Sidebar Menu</h2>
         <ul>
-          <li><a href="home.html">Home</a></li>
-          <li><a href="manage.html">manage farm</a></li>
-          <li><a href="news.html"> News</a></li>
-          <li><a href="forum.html">Forum</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li><a href="manage.php">manage farm</a></li>
+          <li><a href="update.php">Update farmer details</a></li>
         </ul>
         <h2>quick links</h2>
         <ul class="sponsors">
-          <li class="sponsors"><a href="manage.html">Advice</a><br />
+          <li class="sponsors"><a href="manage.php">Advice</a><br />
              get advice about your farm</li>
-          <li class="sponsors"><a href="manage.html">manage farm</a><br />
+          <li class="sponsors"><a href="manage.php">manage farm</a><br />
             add details abot your farm</li>
-          <li class="sponsors"><a href="manage.html">add farm</a><br />
+          <li class="sponsors"><a href="farms.php">add farm</a><br />
             Add your farm</li>
-          <li class="sponsors"><a href="forum.html">Forum</a><br />
-            Premium CSS Templates</li>
 <!--          <li class="sponsors"><a href="http://www.evrsoft.com">Evrsoft</a><br />
             Website Builder Software &amp; Tools</li>
           <li class="sponsors"><a href="http://www.myvectorstore.com">MyVectorStore</a><br />

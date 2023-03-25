@@ -1,104 +1,24 @@
+<?php
+include 'connection.php';
+$name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
+?>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage farm</title>
-        <link rel="stylesheet" href="css/w3css.css">
-        
-    </head>
+<head>
+     
+     <title>Manage farm</title>
+     <?php
+include './components/header.php';
+?>
+     
+ </head>
     <body class="w3-responsive w3-mobile">
-   <script>
-function showhideForm(showform) {
-    if (showform == "1") {
-        document.getElementById("div1").style.display = 'block';
-        document.getElementById("div2").style.display = 'none';
-        document.getElementById("div3").style.display = 'none';
-        document.getElementById("div4").style.display = 'block';
-        document.getElementById("div5").style.display = 'none';
-        document.getElementById("div6").style.display = 'none';
-       
+  
+<?php
+include './components/navbar.php';
+?>
 
-    } 
-    if (showform == "2") {
-        document.getElementById("div2").style.display = 'block';
-        document.getElementById("div1").style.display = 'none';
-        document.getElementById("div3").style.display = 'none';
-        document.getElementById("div5").style.display = 'block';
-        document.getElementById("div6").style.display = 'none';
-        document.getElementById("div4").style.display = 'none';
-
-    } 
-    if (showform == "3") {
-        document.getElementById("div3").style.display = 'block';
-        document.getElementById("div2").style.display = 'none';
-        document.getElementById("div1").style.display = 'none';
-        document.getElementById("div6").style.display = 'block';
-        document.getElementById("div5").style.display = 'none';
-        document.getElementById("div4").style.display = 'none';
-
-    } 
-}
-
-function myFunction() {
-var x = document.forms["form1"]["farmsize"].value;
-// get county
-var xx = document.forms["form1"]["farmsize2"].value;
-var y = document.forms["form1"]["county"].value;
-// calculate required fertilzers
-var fertilizer = x * 500;
- // get date
-var d =document.forms["form1"]["date_planted"].value;
-    
-    document.getElementById("demo125").innerHTML = fertilizer;
-    document.getElementById("demo123").innerHTML = x;
-    document.getElementById("demo126").innerHTML = xx;
-if(y=="Nakuru"){
-document.getElementById("demo124").innerHTML = "nakuru";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Shangi or Super Shangi";
-document.getElementById("div10").style.display = 'block';
-	return true;
-} else if (y=="Bomet") {
-document.getElementById("demo124").innerHTML = "Bomet";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Kenya mpya";
-document.getElementById("div10").style.display = 'block';
-return true;
-} else if (y=="Meru") {
-document.getElementById("demo124").innerHTML = "Meru";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Neru White";
-document.getElementById("div10").style.display = 'block';
-
-return true;	
-
-} else {
-document.getElementById("demo124").innerHTML = "no county selected";
-	return false;
-}
-}
-</script>
-        <div id="container"> 
-                       <fieldset class="w3-green">
-                <div id="" >
-            <h1>Smart potato farmer advisory system</h1>
-            <div class="w3-bar w3-black">
-                <a href="home.php" class="w3-bar-item w3-button">Home</a>
-                <div class="w3-dropdown-hover">
-  <a href="manage.php" class="w3-bar-item w3-button w3-gray">Manage farm</a>
-  <div class="w3-dropdown-content w3-bar-block w3-border">
-    <button onclick="myFunction('Demo1')" class="w3-btn-block w3-left-align">Add Farm</button>
-    <a href="manage_animals.php" class="w3-bar-item w3-button">Manage Farm</a>
-    <a href="manage_equipment.php" class="w3-bar-item w3-button">Get Advice</a>
-  </div>
-</div>
-
-                <a href="news.php" class="w3-bar-item w3-button">News</a>
-                <a href="forum.php" class="w3-bar-item w3-button">Forum</a>
-                <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
-                <div class="w3-bar-item w3-right">
-                </div>
-                <!--<a href="#">welcome <br> Farmer</a>-->
-            </div>
-        </div>
-            </fieldset>
               
                 <div class="w3-accordion">
   <button onclick="myFunction('Demo1')" class="w3-btn-block w3-left-align">Add Farm</button>
@@ -114,10 +34,10 @@ document.getElementById("demo124").innerHTML = "no county selected";
             <input type="text" autocomplete="false" name="county" placeholder="Farm location" required=""><br>
             Farm size:<br>
             <input type="number" autocomplete="false" name="farm_size" placeholder="Farm size in hacters" required=""><br>
-            Type of Potato planted:<br>
-            <input type="text" autocomplete="false" name="potato_name" placeholder="Type of potato planted" required=""><br>
+            Type of crop planted:<br>
+            <input type="text" autocomplete="false" name="crop_name" placeholder="Type of crop planted" required=""><br>
             date planted:<br>
-            <input type="date" autocomplete="false" name="date_planted" placeholder="Quantity of Potato" required=""><br>
+            <input type="date" autocomplete="false" name="date_planted" required=""><br>
             
             <p> <input type="submit" value="Submit" >
                 <input type="Reset" value="Reset">
@@ -130,16 +50,7 @@ document.getElementById("demo124").innerHTML = "no county selected";
   </div> 
             </div>
   </div>
-  <button onclick="myFunction('Demo2')" class="w3-btn-block w3-left-align">Manage Farm</button>
-  <div id="Demo2" class="w3-accordion-content w3-container">
-    <h4>Manage your farm</h4>
-    <p>Select Farm</p>
-    <form method="post" action="farmManage.html">
-        <input type="text" id="search" class="w3-round" name="farm_name" > <p></p>
-        <input type="submit" value="search farm">
-    </form>
-    </fieldset>
-  </div>
+
   <button onclick="myFunction('Demo3')" class="w3-btn-block w3-left-align">Get Advice</button>
   <div id="Demo3" class="w3-accordion-content w3-content">
     <h4>Advice</h4>
@@ -236,7 +147,7 @@ Where is the farm located?:
 <p id="demo123">Result will be shown here</p>
 	county:
 <p id="demo124">Result will be shown here</p>
-	Potato type to be planted:
+	Type of crop to be planted:
 <p id="demo201">Result will be shown here</p>
 	fertilizer to be used:
 	<div id="div10" style="display: none;">

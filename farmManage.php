@@ -1,80 +1,19 @@
+<?php
+include 'connection.php';
+$name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     
         <title>Manage farm</title>
-        <link rel="stylesheet" href="css/w3css.css">
+        <?php
+  include './components/header.php';
+  ?>
         
     </head>
     <body class="w3-responsive w3-mobile">
-   <script>
-function showhideForm(showform) {
-    if (showform == "1") {
-        document.getElementById("div1").style.display = 'block';
-        document.getElementById("div2").style.display = 'none';
-        document.getElementById("div3").style.display = 'none';
-        document.getElementById("div4").style.display = 'block';
-        document.getElementById("div5").style.display = 'none';
-        document.getElementById("div6").style.display = 'none';
-       
-
-    } 
-    if (showform == "2") {
-        document.getElementById("div2").style.display = 'block';
-        document.getElementById("div1").style.display = 'none';
-        document.getElementById("div3").style.display = 'none';
-        document.getElementById("div5").style.display = 'block';
-        document.getElementById("div6").style.display = 'none';
-        document.getElementById("div4").style.display = 'none';
-
-    } 
-    if (showform == "3") {
-        document.getElementById("div3").style.display = 'block';
-        document.getElementById("div2").style.display = 'none';
-        document.getElementById("div1").style.display = 'none';
-        document.getElementById("div6").style.display = 'block';
-        document.getElementById("div5").style.display = 'none';
-        document.getElementById("div4").style.display = 'none';
-
-    } 
-}
-
-function myFunction() {
-var x = document.forms["form1"]["farmsize"].value;
-// get county
-var xx = document.forms["form1"]["farmsize2"].value;
-var y = document.forms["form1"]["county"].value;
-// calculate required fertilzers
-var fertilizer = x * 500;
- // get date
-var d =document.forms["form1"]["date_planted"].value;
-    
-    document.getElementById("demo125").innerHTML = fertilizer;
-    document.getElementById("demo123").innerHTML = x;
-    document.getElementById("demo126").innerHTML = xx;
-if(y=="Nakuru"){
-document.getElementById("demo124").innerHTML = "nakuru";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Shangi or Super Shangi";
-document.getElementById("div10").style.display = 'block';
-	return true;
-} else if (y=="Bomet") {
-document.getElementById("demo124").innerHTML = "Bomet";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Kenya mpya";
-document.getElementById("div10").style.display = 'block';
-return true;
-} else if (y=="Meru") {
-document.getElementById("demo124").innerHTML = "Meru";
-document.getElementById("demo201").innerHTML = "Highly recomended you plant Neru White";
-document.getElementById("div10").style.display = 'block';
-
-return true;	
-
-} else {
-document.getElementById("demo124").innerHTML = "no county selected";
-	return false;
-}
-}
-</script>
         <div id="container"> 
                        <fieldset class="w3-green">
                 <div id="" >
@@ -82,9 +21,7 @@ document.getElementById("demo124").innerHTML = "no county selected";
             <div class="w3-bar w3-black">
                 <a href="home.html" class="w3-bar-item w3-button">Home</a>
                 <a href="manage.hmtl" class="w3-bar-item w3-button w3-gray">Manage farm</a>
-                <a href="news.html" class="w3-bar-item w3-button">News</a>
-                <a href="forum.html" class="w3-bar-item w3-button">Forum</a>
-                <a href="profile.html" class="w3-bar-item w3-button">Profile</a>
+                <a href="profile.html" class="w3-bar-item w3-button">Update personal details</a>
                 <div class="w3-bar-item w3-right">
                 </div>
                 <!--<a href="#">welcome <br> Farmer</a>-->
@@ -98,7 +35,7 @@ document.getElementById("demo124").innerHTML = "no county selected";
     <div class="w3-container" id="add">
                    <div style="width: 40%">
     <h4>Add farm</h4>
-    <form method="post" action="addfarm">
+    <form method="post" action="connection.php">
         <fieldset id="middle" class="w3-card-2">
             Farm Name:<br>
             <input type="text" autocomplete="false" name="farm_name" placeholder="Farm Name" required=""><br>
@@ -111,7 +48,7 @@ document.getElementById("demo124").innerHTML = "no county selected";
             date planted:<br>
             <input type="date" autocomplete="false" name="date_planted" placeholder="Quantity of crop" required=""><br>
             
-            <p> <input type="submit" value="Submit" >
+            <p> <input type="submit" name="Add_farm_btn" value="Submit" >
                 <input type="Reset" value="Reset">
             </p>
            

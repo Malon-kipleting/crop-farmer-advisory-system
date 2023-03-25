@@ -9,8 +9,10 @@
     <body class="w3-mobile">
         <div id="container">
             <div class="w3-green">
-                <h2>Sign Up</h2>
+                <h2><center><b>Sign Up</b><center></h2>
+                <p><b><center>Sign up here<center><b></p>
             </div >
+            <div id="main" class="w3-center w3-card-2 w3-responsive w3-mobile" style="width: 50%; margin:0 auto;">
             <div id="main" class="w3-center w3-card-2 w3-responsive w3-content"> 
                 <form name="myForm" class="w3-formfield" action="signup" method="post" onsubmit="return validateForm()" style="width: 60%;">
                 <fieldset>
