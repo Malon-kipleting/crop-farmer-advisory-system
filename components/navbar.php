@@ -6,7 +6,7 @@
             <!-- w3-gray -->
                 <a href="home.php" class="w3-bar-item w3-button">Home</a>
                 <a href="manage.php" class="w3-bar-item w3-button ">Manage farm</a>
-                <a href="update.php" class="w3-bar-item w3-button">My Farms</a>
+                <a href="farms.php" class="w3-bar-item w3-button">My Farms</a>
                 <a href="update.php" class="w3-bar-item w3-button">Profile</a>
                 
 
