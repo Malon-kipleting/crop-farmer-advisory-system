@@ -1,3 +1,11 @@
-<div id="footer" class="w3-footer w3-center w3-green">
-                  Crop Farmer's Advisory System: A case of Best Practices &copy; 2023
-            </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2023 Copyright:
+    <a href="/"> Crop Farmer Advisory System</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

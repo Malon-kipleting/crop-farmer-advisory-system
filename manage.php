@@ -1,3 +1,71 @@
+<script>
+function showhideForm(showform) {
+    if (showform == "1") {
+        document.getElementById("div1").style.display = 'block';
+        document.getElementById("div2").style.display = 'none';
+        document.getElementById("div3").style.display = 'none';
+        document.getElementById("div4").style.display = 'block';
+        document.getElementById("div5").style.display = 'none';
+        document.getElementById("div6").style.display = 'none';
+       
+
+    } 
+    if (showform == "2") {
+        document.getElementById("div2").style.display = 'block';
+        document.getElementById("div1").style.display = 'none';
+        document.getElementById("div3").style.display = 'none';
+        document.getElementById("div5").style.display = 'block';
+        document.getElementById("div6").style.display = 'none';
+        document.getElementById("div4").style.display = 'none';
+
+    } 
+    if (showform == "3") {
+        document.getElementById("div3").style.display = 'block';
+        document.getElementById("div2").style.display = 'none';
+        document.getElementById("div1").style.display = 'none';
+        document.getElementById("div6").style.display = 'block';
+        document.getElementById("div5").style.display = 'none';
+        document.getElementById("div4").style.display = 'none';
+
+    } 
+}
+
+function myFunction() {
+var x = document.forms["form1"]["farmsize"].value;
+// get county
+var xx = document.forms["form1"]["farmsize2"].value;
+var y = document.forms["form1"]["county"].value;
+// calculate required fertilzers
+var fertilizer = x * 500;
+ // get date
+var d =document.forms["form1"]["date_planted"].value;
+    
+    document.getElementById("demo125").innerHTML = fertilizer;
+    document.getElementById("demo123").innerHTML = x;
+    document.getElementById("demo126").innerHTML = xx;
+if(y=="Nakuru"){
+document.getElementById("demo124").innerHTML = "nakuru";
+document.getElementById("demo201").innerHTML = "Highly recomended you plant Shangi or Super Shangi";
+document.getElementById("div10").style.display = 'block';
+	return true;
+} else if (y=="Bomet") {
+document.getElementById("demo124").innerHTML = "Bomet";
+document.getElementById("demo201").innerHTML = "Highly recomended you plant Kenya mpya";
+document.getElementById("div10").style.display = 'block';
+return true;
+} else if (y=="Meru") {
+document.getElementById("demo124").innerHTML = "Meru";
+document.getElementById("demo201").innerHTML = "Highly recomended you plant Neru White";
+document.getElementById("div10").style.display = 'block';
+
+return true;	
+
+} else {
+document.getElementById("demo124").innerHTML = "no county selected";
+	return false;
+}
+}
+</script>
 <?php
 include 'connection.php';
 $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
@@ -19,40 +87,98 @@ include './components/header.php';
 include './components/navbar.php';
 ?>
 
-              
-                <div class="w3-accordion">
-  <button onclick="myFunction('Demo1')" class="w3-btn-block w3-left-align">Add Farm</button>
-  <div id="Demo1" class="w3-accordion-content w3-container">
-    <div class="w3-container" id="add">
-                   <div style="width: 40%">
-    <h4>Add farm</h4>
-    <form method="post" action="addfarm">
-        <fieldset id="middle" class="w3-card-2">
-            Farm Name:<br>
-            <input type="text" autocomplete="false" name="farm_name" placeholder="Farm Name" required=""><br>
-            Farm location:<br>
-            <input type="text" autocomplete="false" name="county" placeholder="Farm location" required=""><br>
-            Farm size:<br>
-            <input type="number" autocomplete="false" name="farm_size" placeholder="Farm size in hacters" required=""><br>
-            Type of crop planted:<br>
-            <input type="text" autocomplete="false" name="crop_name" placeholder="Type of crop planted" required=""><br>
-            date planted:<br>
-            <input type="date" autocomplete="false" name="date_planted" required=""><br>
-            
-            <p> <input type="submit" value="Submit" >
-                <input type="Reset" value="Reset">
-            </p>
-           
-        </fieldset>
-    </form>
+<div class="container">
 
-    <p></p>
-  </div> 
-            </div>
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Add Farm</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary" onclick="myFunction('Demo1')">Add Farm</a>
+      </div>
+      <hr>
+      <div id="Demo1" class="w3-accordion-content w3-container">
+      <form method="post" action="addfarm.php">
+        <h2 class="text-center">Farm Details</h2>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Farm Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="false" name="farm_name" aria-describedby="emailHelp"placeholder="Enter farm name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Farm Location</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+          <option selected value="">Select location</option>
+          <option value="Baringo">Baringo
+            <option value="Bomet">Bomet
+            <option value="Bungoma">Bungoma
+            <option value="Busia">Busia 
+            <option value="Elgeyo Marakwet County">Elgeyo Marakwet County 
+             <option value="Embu County">Embu County
+            <option value="Garissa County">Garissa County
+            <option value="Homa Bay County">Homa Bay County
+            <option value="Isiolo County">Isiolo County
+            <option value="Kajiado County">Kajiado County
+            <option value="Kakamega County">Kakamega County
+            <option value="Kericho County">Kericho County   
+            <option value="Kiambu County">Kiambu County
+            <option value="Kilifi County">Kilifi County
+            <option value="Kirinyaga County">Kirinyaga County
+            <option value="Kisii County">Kisii County
+            <option value="Kisumu County">Kisumu County
+            <option value="Kitui County">Kitui County
+            <option value="Kwale County">Kwale County
+            <option value="Laikipia County">Laikipia County
+            <option value="Lamu County">Lamu County
+            <option value="Machakos County">Machakos County
+            <option value="Makueni County">Makueni County
+            <option value="Mandera County">Mandera County
+            <option value="Meru County">Meru County
+            <option value="Migori County">Migori County
+            <option value="Marsabit County">Marsabit County
+            <option value="Mombasa County">Mombasa County
+            <option value="Muranga County">Muranga County
+            <option value="Nairobi County">Nairobi County
+            <option value="Nakuru County">Nakuru County
+            <option value="Nandi County">Nandi County
+            <option value="Narok County">Narok County
+            <option value="Nyamira County">Nyamira County
+            <option value="Nyandarua County">Nyandarua County
+            <option value="Nyeri County">Nyeri County
+            <option value="Samburu County">Samburu County
+            <option value="Siaya County">Siaya County
+            <option value="Taita Taveta County">Taita Taveta County
+            <option value="Tana River County">Tana River County
+            <option value="Tharaka Nithi County">Tharaka Nithi County
+            <option value="Trans Nzoia County">Trans Nzoia County
+            <option value="Turkana County">Turkana County
+            <option value="Uasin Gishu County">Uasin Gishu County
+            <option value="Vihiga County">Vihiga County
+            <option value="Wajir County">Wajir County
+            <option value="West Pokot County">West Pokot County
+    </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Farm Size (In hacteres)</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="false" name="farm_size" aria-describedby="emailHelp"placeholder="Enter farm name">
+        </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+</div>
+
+       
+    </div>
   </div>
-
-  <button onclick="myFunction('Demo3')" class="w3-btn-block w3-left-align">Get Advice</button>
-  <div id="Demo3" class="w3-accordion-content w3-content">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Get Advice</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary" onclick="myFunction('Demo3')">Get Advice</a>
+      </div>
+   <hr>
+      <div id="Demo3" class="w3-accordion-content w3-content p-2">
     <h4>Advice</h4>
     
     <div class="w3-content">
@@ -180,21 +306,28 @@ P2O5)  in the rows at planting.</li>
 </form>
         <br>
 </div>
-    
+  </div>
+
+</div>    
+</div>  
 </div>
   <br>
  
 
             <div id="main">
               
-            <div id="footer" class="w3-footer w3-center w3-green">
-                Crop Farmer's Advisory System: A case of Best Practices &copy; 2023
-            </div>
+            <?php
+include './components/footer.php';
+?>
         </div>
             <script>
 function myFunction(id) {
     document.getElementById(id).classList.toggle("w3-show");
 }
 </script>
+<?php
+include './components/scripts.php';
+?>
+
     </body>
 </html>

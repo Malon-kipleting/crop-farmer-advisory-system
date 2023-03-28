@@ -19,9 +19,9 @@ $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
                 <div id="" >
             <h1>Crop farmer advisory system</h1>
             <div class="w3-bar w3-black">
-                <a href="home.html" class="w3-bar-item w3-button">Home</a>
-                <a href="manage.hmtl" class="w3-bar-item w3-button w3-gray">Manage farm</a>
-                <a href="profile.html" class="w3-bar-item w3-button">Update personal details</a>
+                <a href="home.php" class="w3-bar-item w3-button">Home</a>
+                <a href="manage.php" class="w3-bar-item w3-button w3-gray">Manage farm</a>
+                <a href="profile.php" class="w3-bar-item w3-button">Update personal details</a>
                 <div class="w3-bar-item w3-right">
                 </div>
                 <!--<a href="#">welcome <br> Farmer</a>-->

@@ -41,7 +41,7 @@ include './components/navbar.php';
 </tr>
 <tr>
   <td>Surname</td>
-  <td><input type="text" name="sname" value=""></td>
+  <td><input type="text" name="sname" value="<?php echo $_SESSION['farmerLname']; ?>"></td>
   
 </tr>
 <tr>
