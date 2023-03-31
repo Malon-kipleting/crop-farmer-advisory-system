@@ -49,6 +49,7 @@ include './components/navbar.php';
               $farm_id = $row['farm_id'];
               $farm_name = $row['farm_name'];
               $farm_size = $row['farm_size'];
+              $farm_loc = $row['county_id'];
               $farm_location = $row['county_name'];
               $date_created = $row['date_added'];
 
@@ -62,7 +63,7 @@ include './components/navbar.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='Farm_id' value='$farm_id'>
-      <input type='submit' data-farm_id='$farm_id'  data-farm_name='$farm_name' data-farm_size='$farm_size' data-farm_location='$farm_location' value='Edit Details' name='edit-farm-btn' class='btn btn-success edit-farm-modal-btn m-2'>
+      <input type='submit' data-farm_id='$farm_id'  data-farm_name='$farm_name' data-farm_size='$farm_size' data-farm_location='$farm_loc' value='Edit Details' name='edit-farm-btn' class='btn btn-success edit-farm-modal-btn m-2'>
       <input type='submit' data-id= '$farm_id' value='Delete Farm'  class='btn btn-danger deleteFarmBtn'>
       </form>
       </td> </tr>";
@@ -106,7 +107,7 @@ include './components/navbar.php';
                 <div class="modal-body">
                     <form method="POST" >
                         <div class="form-group">
-                            <input type="text" readonly  name="farm_id" class="form-control" id="farm_id" required>
+                            <input type="text" readonly hidden name="farm_id" class="form-control" id="farm_id" required>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" readonly class="col-form-label">Farm Name:</label>
@@ -118,7 +119,21 @@ include './components/navbar.php';
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" readonly class="col-form-label">Farm Location:</label>
-                            <input type="text" name="farm_loc" class="form-control" id="farm_loc" required>
+                            <label for="uni_semester_id">Select County:</label>
+                            <select class="form-control" id="county_id" name="county_id" required>
+                                <option value="">Select County..</option>
+                                <?php 
+							// Retrieve the semesters from the database
+							$sql=mysqli_query($db,"select * from county_details");
+							while ($rw=mysqli_fetch_array($sql)) {
+							?>
+														<option value="<?php echo htmlentities($rw['county_id']);?>">
+															<?php echo htmlentities($rw['county_name']);?> County</option>
+														<?php
+							}
+							?>
+                            </select>
+                        
                         </div>
                        
                         <div class="modal-footer">
@@ -145,14 +160,18 @@ include './components/navbar.php';
         editButton.addEventListener("click", function(e) {
             e.preventDefault();
 
-            // let schoolid = editButton.dataset.farm_id;
-            // let sch_name = editButton.dataset.schname;
-            // let sch_short_name = editButton.dataset.schshort;
-
-
-            // document.getElementById("sch_id").value = schoolid;
-            // document.getElementById("sch_name").value = sch_name;
-            // document.getElementById("sch_short_form").value = sch_short_name;
+            let farmid = editButton.dataset.farm_id;
+            let farm_name = editButton.dataset.farm_name;
+            let farm_size = editButton.dataset.farm_size;
+            let farm_location = editButton.dataset.farm_location;
+     
+            document.getElementById("farm_id").value = farmid;
+            document.getElementById("farm_name").value = farm_name;
+            document.getElementById("farm_size").value = farm_size;
+			document.getElementById("county_id").value = farm_location;
+            // pre-select the option in the dropdown menu
+            const county_select = document.querySelector('#county_id');
+            county_select.value = farm_location;
 
             editFarmModal();
         });
