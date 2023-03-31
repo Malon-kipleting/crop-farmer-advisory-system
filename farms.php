@@ -122,6 +122,45 @@ include './components/navbar.php';
                     </div>
 		</div>
 
+
+<!--delete farm-->
+		<div class="modal" id='deleteFarmModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this Farm?</p>
+                        <form method="POST" action="">
+                            <div class="form-group">
+                                <input type="text"  class="form-control" id="farmID" required readonly
+                                    name='farm_id'>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No,
+                                    Cancel</button>
+                                <button type="submit" name='delete-farm-btn'
+                                    class="btn btn-danger">Yes,Delete!</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
  <!--edit farm details-->
  <div class="modal" id="editFarmModal" tabindex="-1" role="dialog" aria-labelledby="editFarmModalLabel"
         aria-hidden="true">
@@ -203,6 +242,25 @@ include './components/navbar.php';
             county_select.value = farm_location;
 
             editFarmModal();
+        });
+    });
+
+
+
+	    // delete farm modal query
+		function deleteFarmModal() {
+        $("#deleteFarmModal").modal("show");
+    }
+    let deleteBtns = document.querySelectorAll(".deleteFarmBtn");
+    deleteBtns.forEach(function(deleteBtn) {
+        deleteBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            let farm_id = deleteBtn.dataset.id;
+
+            document.getElementById("farmID").value = farm_id;
+
+            deleteFarmModal();
         });
     });
 	</script>
