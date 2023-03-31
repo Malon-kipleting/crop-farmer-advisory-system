@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 28, 2023 at 02:48 PM
+-- Generation Time: Mar 31, 2023 at 04:13 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -30,10 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `activity_details` (
   `id` int(11) NOT NULL,
-  `activity_id` int(45) NOT NULL,
-  `activity_name` int(255) NOT NULL,
+  `activity_id` varchar(100) NOT NULL,
+  `activity_name` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `activity_details`
+--
+
+INSERT INTO `activity_details` (`id`, `activity_id`, `activity_name`, `date_added`) VALUES
+(1, 'ACT01', 'Planting', '2023-03-31 16:43:04'),
+(2, 'ACT02', 'Spraying', '2023-03-31 16:43:04');
 
 -- --------------------------------------------------------
 
@@ -77,7 +85,7 @@ CREATE TABLE `crop_details` (
   `id` int(11) NOT NULL,
   `crop_id` varchar(20) NOT NULL,
   `crop_name` varchar(255) NOT NULL,
-  `date_added` varchar(255) NOT NULL
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -85,19 +93,8 @@ CREATE TABLE `crop_details` (
 --
 
 INSERT INTO `crop_details` (`id`, `crop_id`, `crop_name`, `date_added`) VALUES
-(1, 'crp01', 'Maize', '12-02-2022');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `crop_farm_details`
---
-
-CREATE TABLE `crop_farm_details` (
-  `id` int(11) NOT NULL,
-  `farm_id` varchar(45) NOT NULL,
-  `crop_id` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(1, 'CRP01', 'Maize', '2023-03-31 16:45:13'),
+(2, 'CRP02', 'Beans', '2023-03-31 16:45:13');
 
 -- --------------------------------------------------------
 
@@ -144,20 +141,47 @@ INSERT INTO `farmer_details` (`id`, `farmer_id`, `farmer_fname`, `farmer_lname`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `farmer_owner_details`
+--
+
+CREATE TABLE `farmer_owner_details` (
+  `id` int(11) NOT NULL,
+  `farm_id` varchar(100) NOT NULL,
+  `owner_id` varchar(100) NOT NULL,
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `farmer_owner_details`
+--
+
+INSERT INTO `farmer_owner_details` (`id`, `farm_id`, `owner_id`, `date_updated`) VALUES
+(2, 'FRM-KZH96A', '37756501', '2023-03-31 12:16:40'),
+(3, 'FRM-OGYLCF', '37756501', '2023-03-31 12:17:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `farmer_request_advice_details`
 --
 
 CREATE TABLE `farmer_request_advice_details` (
   `id` int(11) NOT NULL,
   `request_id` varchar(100) NOT NULL,
-  `farmer_id` int(11) NOT NULL,
-  `farm_id` int(11) NOT NULL,
-  `crop_id` int(45) NOT NULL,
-  `soil_id` int(45) NOT NULL,
-  `activity_id` int(45) NOT NULL,
-  `short_description` text NOT NULL,
+  `farmer_id` varchar(100) NOT NULL,
+  `farm_id` varchar(100) NOT NULL,
+  `crop_id` varchar(100) NOT NULL,
+  `activity_id` varchar(100) NOT NULL,
+  `short_description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `farmer_request_advice_details`
+--
+
+INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_added`) VALUES
+(1, '0gIFuhn', '37756501', 'FRM-OGYLCF', 'CRP01', 'ACT01', 'fhhjhhjhghggh', '2023-03-31 19:09:47');
 
 -- --------------------------------------------------------
 
@@ -171,7 +195,7 @@ CREATE TABLE `farm_details` (
   `farm_name` varchar(255) NOT NULL,
   `farm_location` varchar(255) NOT NULL,
   `farm_size` varchar(100) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -179,22 +203,30 @@ CREATE TABLE `farm_details` (
 --
 
 INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
-(1, 'frm01', 'Maseno-H1', 'county001', '', '2023-03-04 12:08:18');
+(2, 'FRM-KZH96A', 'Yegen Farm', 'county001', '15', '2023-03-31 12:16:40'),
+(3, 'FRM-OGYLCF', 'Meken', 'county001', '8', '2023-03-31 12:17:08');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `officer_advice_details`
+-- Table structure for table `request_response_details`
 --
 
-CREATE TABLE `officer_advice_details` (
+CREATE TABLE `request_response_details` (
   `id` int(11) NOT NULL,
-  `advice_id` varchar(100) NOT NULL,
-  `officer_id` int(45) NOT NULL,
-  `farmer_request_id` varchar(100) NOT NULL,
-  `advice_description` varchar(255) NOT NULL,
+  `request_id` varchar(100) NOT NULL,
+  `officer_id` varchar(100) DEFAULT NULL,
+  `response` varchar(255) DEFAULT NULL,
+  `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `request_response_details`
+--
+
+INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
+(9, '0gIFuhn', NULL, NULL, 'Pending', '2023-03-31 19:09:47');
 
 -- --------------------------------------------------------
 
@@ -242,14 +274,6 @@ ALTER TABLE `crop_details`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `crop_farm_details`
---
-ALTER TABLE `crop_farm_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `farm_idddd` (`farm_id`),
-  ADD KEY `crpiddd` (`crop_id`);
-
---
 -- Indexes for table `extension_officer`
 --
 ALTER TABLE `extension_officer`
@@ -263,11 +287,23 @@ ALTER TABLE `farmer_details`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `farmer_owner_details`
+--
+ALTER TABLE `farmer_owner_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `frid` (`farm_id`),
+  ADD KEY `ownidd` (`owner_id`);
+
+--
 -- Indexes for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
   ADD PRIMARY KEY (`request_id`),
-  ADD KEY `id` (`id`);
+  ADD KEY `fdifif` (`id`),
+  ADD KEY `farmerID` (`farmer_id`),
+  ADD KEY `crp` (`crop_id`),
+  ADD KEY `shamba` (`farm_id`),
+  ADD KEY `kitivity` (`activity_id`);
 
 --
 -- Indexes for table `farm_details`
@@ -278,13 +314,12 @@ ALTER TABLE `farm_details`
   ADD KEY `farm_location` (`farm_location`);
 
 --
--- Indexes for table `officer_advice_details`
+-- Indexes for table `request_response_details`
 --
-ALTER TABLE `officer_advice_details`
-  ADD PRIMARY KEY (`advice_id`),
-  ADD KEY `fname` (`id`),
-  ADD KEY `off_id` (`officer_id`),
-  ADD KEY `farmer_request_id` (`farmer_request_id`);
+ALTER TABLE `request_response_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rqid` (`request_id`),
+  ADD KEY `officer_id` (`officer_id`);
 
 --
 -- Indexes for table `soil_details`
@@ -301,7 +336,7 @@ ALTER TABLE `soil_details`
 -- AUTO_INCREMENT for table `activity_details`
 --
 ALTER TABLE `activity_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `advice_details`
@@ -319,13 +354,7 @@ ALTER TABLE `county_details`
 -- AUTO_INCREMENT for table `crop_details`
 --
 ALTER TABLE `crop_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `crop_farm_details`
---
-ALTER TABLE `crop_farm_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `farmer_details`
@@ -334,16 +363,28 @@ ALTER TABLE `farmer_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `farm_details`
+-- AUTO_INCREMENT for table `farmer_owner_details`
 --
-ALTER TABLE `farm_details`
+ALTER TABLE `farmer_owner_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `farmer_request_advice_details`
+--
+ALTER TABLE `farmer_request_advice_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `officer_advice_details`
+-- AUTO_INCREMENT for table `farm_details`
 --
-ALTER TABLE `officer_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `farm_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `request_response_details`
+--
+ALTER TABLE `request_response_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
@@ -356,11 +397,20 @@ ALTER TABLE `soil_details`
 --
 
 --
--- Constraints for table `crop_farm_details`
+-- Constraints for table `farmer_owner_details`
 --
-ALTER TABLE `crop_farm_details`
-  ADD CONSTRAINT `crpidid` FOREIGN KEY (`crop_id`) REFERENCES `crop_details` (`crop_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `frmid` FOREIGN KEY (`farm_id`) REFERENCES `farm_details` (`farm_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `farmer_owner_details`
+  ADD CONSTRAINT `farm` FOREIGN KEY (`farm_id`) REFERENCES `farm_details` (`farm_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `owner` FOREIGN KEY (`owner_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `farmer_request_advice_details`
+--
+ALTER TABLE `farmer_request_advice_details`
+  ADD CONSTRAINT `crp` FOREIGN KEY (`crop_id`) REFERENCES `crop_details` (`crop_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `farmerID` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kitivity` FOREIGN KEY (`activity_id`) REFERENCES `activity_details` (`activity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `shamba` FOREIGN KEY (`farm_id`) REFERENCES `farm_details` (`farm_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `farm_details`
