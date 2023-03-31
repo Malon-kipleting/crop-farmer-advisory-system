@@ -3,6 +3,27 @@ include 'connection.php';
 $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 $farmer_id = $_SESSION['farmerId'];
 
+  // Delete farm Details
+  if (isset($_POST['delete-farm-btn'])) {
+
+	$farmID = $_POST['farm_id'];
+	
+	if (empty($farmID)) {
+	  array_push($errors, "Farm ID is required");
+	}
+	if (count($errors) == 0) {
+		$farm_data_delete_query = "DELETE FROM `farm_details` WHERE `farm_id`='$farmID' ";
+		$results = mysqli_query($db, $farm_data_delete_query);
+  
+		  header('location: farms.php');
+		}else{
+		  array_push($errors, "Unable to delete farm");
+		  header('location: farms.php');
+		}
+	}
+  
+
+
 //Update farm details
 if (isset($_POST['update-farm-details-btn'])) {
 	$farmid = $_POST['farm_id'];
@@ -139,7 +160,7 @@ include './components/navbar.php';
                         <p>Are you sure you want to delete this Farm?</p>
                         <form method="POST" action="">
                             <div class="form-group">
-                                <input type="text"  class="form-control" id="farmID" required readonly
+                                <input type="text" hidden class="form-control" id="farmID" required readonly
                                     name='farm_id'>
                             </div>
                             <div class="modal-footer">

@@ -111,7 +111,7 @@ include './components/navbar.php';
         <h2 class="text-center">Farm Details</h2>
         <div class="form-group">
           <label for="exampleInputEmail1">Farm Name</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="false" name="owner_id" aria-describedby="emailHelp"  readonly value="<?php echo $farmer_id; ?>" required>
+          <input type="text" class="form-control" id="exampleInputEmail1" hidden autocomplete="false" name="owner_id" aria-describedby="emailHelp"  readonly value="<?php echo $farmer_id; ?>" required>
           <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="false" name="farm_name" aria-describedby="emailHelp"placeholder="Enter farm name" required>
         </div>
         <div class="form-group">
