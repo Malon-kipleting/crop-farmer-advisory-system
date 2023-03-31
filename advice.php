@@ -36,9 +36,65 @@ function showhideForm(showform) {
 include 'connection.php';
 $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 
+$farmer_id = $_SESSION['farmerId'];
 
+function generateRequestId() {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $length = 7;
+  $requestId = '';
+  for ($i = 0; $i < $length; $i++) {
+    $requestId .= $characters[rand(0, strlen($characters) - 1)];
+  }
+  return $requestId;
+}
+
+if (isset($_POST['get_advice_btn'])) {
+  $requestId = generateRequestId();
+
+  $farmer = $_POST['farmr_id'];
+  $farm_id = $_POST['farm_id'];
+  $activity_id = $_POST['activity_id'];
+  $crop_id = $_POST['crop_id'];
+  $date = $_POST['date_id'];
+  $request_message = $_POST['request_message'];
+
+
+  if (empty($farm_id)) {
+    array_push($errors, "Farm_id required");
+  }
+  if (empty($activity_id)) {
+    array_push($errors, "Choose your activity");
+  }
+  if (empty($crop_id)) {
+    array_push($errors, "Choose the type of crop");
+  }
+  if (empty($date)) {
+    array_push($errors, "Select the date of activity");
+  }
+  if (empty($request_message)) {
+    array_push($errors, "Please input your request");
+  }
+
+  if (count($errors) == 0) {
+   
+    $request_query = "INSERT INTO `farmer_request_advice_details`(`request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`)
+     VALUES ('$requestId','$farmer','$farm_id','$crop_id','$activity_id','$request_message')";
+    $request_results = mysqli_query($db, $request_query);
+
+    $advice_query = "INSERT INTO `request_response_details`(`request_id`, `request_status`) VALUES ('$requestId','Pending')";
+    $advice_result = mysqli_query($db, $advice_query);
+    
+    header('location: response.php');
+  }else{
+    array_push($errors, "unable to push requests");
+    header('location: advice.php');
+  }
+  
+     
+    }
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,131 +124,75 @@ include './components/navbar.php';
       </div>
    <hr>
       <div id="Demo3" class="w3-accordion-content w3-content p-2">
-    <h4>Advice</h4>
+    <h4 class="text-center">Get Advice</h4>
     
     <div class="w3-content">
-<form onsubmit="return fromSubmited()" name="form1">
-	<div>
-			What do you want to do?:
-<input type="radio" id="showform" value="1" name="showform" onchange="showhideForm(this.value);"/>Plant
-<input type="radio" id="showform" value="2" name="showform" onchange="showhideForm(this.value);"/>Spray
-<input type="radio" id="showform" value="3" name="showform" onchange="showhideForm(this.value);"/>Harvest
 
+    <form name="form1" method="POST" action="">
+    <input type="text"  required readonly hidden name="farmr_id" class="form-control" value="<?php echo $farmer_id; ?>" id="exampleFormControlInput1" >
 
-</div>
-	
-<div id="div1" style="display: none;">
-	<!-- plant -->
-Where is the farm located?:
-	<select name="county">
-        <option value="Baringo">Baringo
-            <option value="Bomet">Bomet
-            <option value="Bungoma">Bungoma
-            <option value="Busia">Busia 
-            <option value="Elgeyo Marakwet County">Elgeyo Marakwet County 
-             <option value="Embu County">Embu County
-            <option value="Garissa County">Garissa County
-            <option value="Homa Bay County">Homa Bay County
-            <option value="Isiolo County">Isiolo County
-            <option value="Kajiado County">Kajiado County
-            <option value="Kakamega County">Kakamega County
-            <option value="Kericho County">Kericho County   
-            <option value="Kiambu County">Kiambu County
-            <option value="Kilifi County">Kilifi County
-            <option value="Kirinyaga County">Kirinyaga County
-            <option value="Kisii County">Kisii County
-            <option value="Kisumu County">Kisumu County
-            <option value="Kitui County">Kitui County
-            <option value="Kwale County">Kwale County
-            <option value="Laikipia County">Laikipia County
-            <option value="Lamu County">Lamu County
-            <option value="Machakos County">Machakos County
-            <option value="Makueni County">Makueni County
-            <option value="Mandera County">Mandera County
-            <option value="Meru County">Meru County
-            <option value="Migori County">Migori County
-            <option value="Marsabit County">Marsabit County
-            <option value="Mombasa County">Mombasa County
-            <option value="Muranga County">Muranga County
-            <option value="Nairobi County">Nairobi County
-            <option value="Nakuru County">Nakuru County
-            <option value="Nandi County">Nandi County
-            <option value="Narok County">Narok County
-            <option value="Nyamira County">Nyamira County
-            <option value="Nyandarua County">Nyandarua County
-            <option value="Nyeri County">Nyeri County
-            <option value="Samburu County">Samburu County
-            <option value="Siaya County">Siaya County
-            <option value="Taita Taveta County">Taita Taveta County
-            <option value="Tana River County">Tana River County
-            <option value="Tharaka Nithi County">Tharaka Nithi County
-            <option value="Trans Nzoia County">Trans Nzoia County
-            <option value="Turkana County">Turkana County
-            <option value="Uasin Gishu County">Uasin Gishu County
-            <option value="Vihiga County">Vihiga County
-            <option value="Wajir County">Wajir County
-            <option value="West Pokot County">West Pokot County
-	</select>
-	<div>
-		Farm Size:<br>
-		<input type="number" required="" name="farmsize"><br>
-	</div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Farm</label>
+    <select class="form-control" id="farm_id" name="farm_id" required>
+    <option value="">Select Farm..</option>
+    <?php 
+    // Retrieve the Activity from the database
+    $sql=mysqli_query($db,"select * from farm_details INNER JOIN farmer_owner_details ON farmer_owner_details.farm_id =farm_details.farm_id WHERE farmer_owner_details.owner_id='$farmer_id'  ");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+        <option value="<?php echo htmlentities($rw['farm_id']);?>">
+            <?php echo htmlentities($rw['farm_name']);?></option>
+        <?php
+    }
+    ?>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Activity</label>
+    <select class="form-control" id="activity_id" name="activity_id" required>
+    <option value="">Select Activity..</option>
+    <?php 
+    // Retrieve the Crop from the database
+    $sql=mysqli_query($db,"select * from activity_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+        <option value="<?php echo htmlentities($rw['activity_id']);?>">
+            <?php echo htmlentities($rw['activity_name']);?></option>
+        <?php
+    }
+    ?>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Crop</label>
+    <select class="form-control" id="crop_id" name="crop_id" required>
+    <option value="">Select Crop..</option>
+    <?php 
+    // Retrieve the Crop from the database
+    $sql=mysqli_query($db,"select * from crop_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+        <option value="<?php echo htmlentities($rw['crop_id']);?>">
+            <?php echo htmlentities($rw['crop_name']);?></option>
+        <?php
+    }
+    ?>
+    </select>
+  </div>
 
-</div>
-<div id="div2" style="display: none;">
-	<!-- spray -->
-	<div>
-		Farm Size:<br>
-		<input type="number" required="" name="farmsize2"><br>
-		Date planted:<br>
-		<input type="date" required="" name="date_planted"><br>
-	</div>
-</div>
-
-<div id="div3" style="display: none;">
-	<!-- harvest -->
-	<div>
-		
-		Date planted:<br>
-		<input type="date" name="date_planted"><br>
-	</div>
-</div>
-<div id="div4" style="display: none;">
-	farm size:
-<p id="demo123">Result will be shown here</p>
-	county:
-<p id="demo124">Result will be shown here</p>
-	Type of crop to be planted:
-<p id="demo201">Result will be shown here</p>
-	fertilizer to be used:
-	<div id="div10" style="display: none;">
-<ul>
-<li> Apply <strong id="demo125">Result will be shown here</strong> Kgs Diammonium phosphate (DAP-18% N and 46%
-P2O5)  in the rows at planting.</li>
-<li> On acidic soils  apply same Amount as in above, of Monoammonium Phosphate (MAP11%N and 50% P2O5) can be used</li>
-</ul>
-</div>
-<button type="button" onclick="myFunction()">Get Advice</button>
-</div>
-<div id="div5" style="display: none;">
-	What to do:
-<p id="demo126">Result will be shown here</p>
-	farm size:
-<p id="demo127">Result will be shown here</p>
-	Spray to be used:
-<p id="demo128">Result will be shown here</p>
-	Amount of spray to be used:
-<p id="demo129">Result will be shown here</p>
-<button type="button" onclick="myFunction()">Get advice</button>
-</div>
-<div id="div6" style="display: none;">
-	Date of Harvest:
-<p id="demo131">Result will be shown here</p>
-<button type="button" onclick="myFunction()">Get advice</button>
-</div>
-
-	<!-- <input type="submit" value="submit"> -->
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Date of Activity</label>
+    <input type="date" class="form-control" id="exampleFormControlInput1"  name="date_id" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1" required>Describe your request in Detail:</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="request_message" required></textarea>
+  </div>
+  <div class="form-group">
+  <button type="submit" name="get_advice_btn"class="btn btn-success btn-block">Submit</button>
+  </div>
 </form>
+
         <br>
 </div>
   </div>

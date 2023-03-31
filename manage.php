@@ -102,7 +102,7 @@ include './components/navbar.php';
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Add Farm</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">Please register you farms with us. Click `Add Farm` Button below</p>
         <a href="#" class="btn btn-primary" onclick="myFunction('Demo1')">Add Farm</a>
       </div>
       <hr>
@@ -132,9 +132,9 @@ include './components/navbar.php';
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Farm Size (In hacteres)</label>
-          <input type="number" class="form-control" id="exampleInputEmail1" autocomplete="false" name="farm_size" aria-describedby="emailHelp"placeholder="Enter farm size in Ha">
+          <input type="number" class="form-control" id="exampleInputEmail1" autocomplete="false" name="farm_size" aria-describedby="emailHelp"placeholder="Enter farm size in Ha" required>
         </div>
-                <input type="submit" name="add_farm_btn" class="btn btn-success btn-block" value="Add Farm">
+                <input type="submit" name="add_farm_btn" class="btn btn-success btn-block" value="Register Farm">
       </form>
 </div>
 

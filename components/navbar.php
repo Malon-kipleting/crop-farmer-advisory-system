@@ -7,7 +7,7 @@
                 <a href="home.php" class="w3-bar-item w3-button">Home</a>
                 <a href="manage.php" class="w3-bar-item w3-button ">Manage farm</a>
                 <a href="farms.php" class="w3-bar-item w3-button">My Farms</a>
-                <a href="advice.php" class="w3-bar-item w3-button">Get dvice</a>
+                <a href="advice.php" class="w3-bar-item w3-button">Get Advice</a>
                 <a href="update.php" class="w3-bar-item w3-button">Profile</a>
 
                
