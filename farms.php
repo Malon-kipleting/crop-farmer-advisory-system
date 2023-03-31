@@ -3,7 +3,36 @@ include 'connection.php';
 $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 $farmer_id = $_SESSION['farmerId'];
 
+//Update farm details
+if (isset($_POST['update-farm-details-btn'])) {
+	$farmid = $_POST['farm_id'];
+	$farmname = $_POST['farm_name'];
+	$farmlocation = $_POST['cnty_id'];
+	$farmsize = $_POST['frm_size'];
 
+	if (empty($farmid)) {
+	  array_push($errors, "Farm ID is required");
+	}
+	if (empty($farmname)) {
+	  array_push($errors, "Farm name is required");
+	}
+	if (empty($farmlocation)) {
+	  array_push($errors, "Enter farm location");
+	}
+	if (empty($farmsize)) {
+	  array_push($errors, "Input farm size");
+	}
+	if (count($errors) == 0) {
+	 
+	  $add_farm_query = "UPDATE `farm_details` SET `farm_name`='$farmname',`farm_location`='$farmlocation',`farm_size`='$farmsize' WHERE `farm_id`='$farmid'";
+	  $results = mysqli_query($db, $add_farm_query);
+
+	  header('location: farms.php');
+	}else{
+		array_push($errors, "unable to update details");
+		header('location: farms.php');
+	  }
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,7 +134,7 @@ include './components/navbar.php';
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" >
+                    <form method="POST" action="">
                         <div class="form-group">
                             <input type="text" readonly hidden name="farm_id" class="form-control" id="farm_id" required>
                         </div>
@@ -115,12 +144,12 @@ include './components/navbar.php';
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" readonly class="col-form-label">Farm Size:</label>
-                            <input type="text" name="farm_size" class="form-control" id="farm_size" required>
+                            <input type="number" name="frm_size" class="form-control" id="farm_size" required>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" readonly class="col-form-label">Farm Location:</label>
                             <label for="uni_semester_id">Select County:</label>
-                            <select class="form-control" id="county_id" name="county_id" required>
+                            <select class="form-control" id="county_id" name="cnty_id" required>
                                 <option value="">Select County..</option>
                                 <?php 
 							// Retrieve the semesters from the database
