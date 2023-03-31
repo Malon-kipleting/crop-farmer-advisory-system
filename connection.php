@@ -122,43 +122,5 @@ if (isset($_POST['login_btn'])) {
 }
 
 
-
-function generateFarmID($length = 5) {
-  $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  $result = '';
-  for ($i = 0; $i < $length; $i++) {
-    $result .= $characters[rand(0, strlen($characters) - 1)];
-  }
-  return $result;
-}
-
-
-if (isset($_POST['Add_farm_btn'])) {
-  $farmid =  generateFarmID();
-  $farmname = $_POST['farm_name'];
-  $farmlocation = $_POST['farm_location'];
-  $farmsize = $_POST['farm_size'];
-
-  if (empty($farmname)) {
-    array_push($errors, "Farm name is required");
-  }
-  if (empty($farmlocation)) {
-    array_push($errors, "Enter farm location");
-  }
-  if (empty($farmsize)) {
-    array_push($errors, "Input farm size");
-  }
-  if (count($errors) == 0) {
-   
-    // $login_query = "";
-    // $results = mysqli_query($db, $login_query);
-  }
-  
-
-      header('location: farms.php');
-    }else{
-      array_push($errors, "Unable to add farm");
-      // header('location: manage.php');
-    }
 ob_end_flush();
 ?>
