@@ -27,6 +27,7 @@ include './components/navbar.php';
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -39,6 +40,10 @@ include './components/navbar.php';
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="./images/slide3.jpg" alt="Third slide"
+                                style=" max-height: 700px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="./images/slide4.jpg" alt="Fourth slide"
                                 style=" max-height: 700px;">
                         </div>
                     </div>
