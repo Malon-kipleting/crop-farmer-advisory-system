@@ -51,7 +51,7 @@ if (isset($_POST['update_farmer_details_btn'])) {
 
 <head>
 
-    <title>Update farmer details</title>
+    <title>Profile </title>
     <?php
 include './components/header.php';
 ?>
