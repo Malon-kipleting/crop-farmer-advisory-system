@@ -7,7 +7,7 @@ session_start();
 
 // connect to the database
 try{
-    $db = mysqli_connect('localhost', 'malon', 'malon', 'farmer_db');
+    $db = mysqli_connect('localhost', 'benson', 'benson', 'farmer_db');
     //echo 'Database Connected Successfully';
     }
     catch(Exception $e) {
@@ -21,7 +21,7 @@ try{
     $email =  '';
     $phone =  '';
     $gender =  '';
-$errors = array(); 
+    $errors = array(); 
 
 
 // REGISTER USER
@@ -78,9 +78,9 @@ if (count($errors) == 0) {
 }
 
 //login user
-if (isset($_POST['login_btn'])) {
-  $username = $_POST['user_email'];
-  $password = $_POST['user_password'];
+if (isset($_POST['admin_login_btn'])) {
+  $username = $_POST['admin_email'];
+  $password = $_POST['admin_password'];
 
   if (empty($username)) {
     array_push($errors, "Username is required");
@@ -91,7 +91,7 @@ if (isset($_POST['login_btn'])) {
 
   if (count($errors) == 0) {
     $encrypted_password = md5($password);
-    $login_query = "SELECT * FROM farmer_details WHERE `farmer_email`='$username' AND `farmer_password`='$encrypted_password'";
+    $login_query = "SELECT * FROM extension_officer WHERE `officer_email`='$username' AND `officer_password`='$encrypted_password'";
     $results = mysqli_query($db, $login_query);
 
     if (mysqli_num_rows($results) == 1) {
@@ -99,18 +99,19 @@ if (isset($_POST['login_btn'])) {
       $row = mysqli_fetch_assoc($results);
     // end generate random alphanumeric character
       //row data
-      $farmer_id=$row['farmer_id'];
-      $farmer_fname=$row['farmer_fname'];
-      $farmer_lname=$row['farmer_lname'];
-      $email=$row['farmer_email'];
-      $contact=$row['farmer_phone'];   
+      $officer_id=$row['officer_id'];
+      $firstname=$row['first_name'];
+      $lastname=$row['last_name'];
+      $email=$row['officer_email'];
+      $contact=$row['officer_phone'];   
+      $gender=$row['Gender'];   
   
       //sessions
-      $_SESSION['farmerId']=$farmer_id;
-      $_SESSION['farmerFname']=$farmer_fname;
-      $_SESSION['farmerLname']=$farmer_lname;
-      $_SESSION['farmer_mail']=$email;
-      $_SESSION['farmer_tel']=$contact;  
+      $_SESSION['officerId']=$officer_id;
+      $_SESSION['adm_fname']=$firstname;
+      $_SESSION['adm_lname']= $lastname;
+      $_SESSION['adm_mail']=$email;
+      $_SESSION['adm_tel']=$contact;  
       $_SESSION['success'] = "You are now logged in";
 
       header('location: home.php');

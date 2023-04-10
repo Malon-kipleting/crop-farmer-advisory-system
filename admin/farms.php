@@ -57,42 +57,43 @@ if (isset($_POST['update-farm-details-btn'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-     
-     <title>My Farms</title>
-     <?php
+
+    <title>My Farms</title>
+    <?php
 include './components/header.php';
 ?>
-     
- </head>
+
+</head>
+
 <body>
-	<?php
+    <?php
 include './components/navbar.php';
 ?>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-		<div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">List of Farms</h5>
-                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm"
-                                cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Farm Name</th>
-                                        <th>Farm Size (Acres)</th>
-                                        <th>Farm Location</th>
-                                        <th>Date Added</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">List of Farms</h5>
+                        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+                            width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Farm Name</th>
+                                    <th>Farm Size (Acres)</th>
+                                    <th>Farm Location</th>
+                                    <th>Date Added</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
   if($farmer_id){
       $data_fetch_query = "SELECT * FROM `farm_details`
 	INNER JOIN farmer_owner_details ON farmer_owner_details.farm_id = farm_details.farm_id
-	INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
-	";
+	INNER JOIN county_details ON county_details.county_id = farm_details.farm_location WHERE farmer_owner_details.owner_id = '$farmer_id'";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
@@ -128,122 +129,126 @@ include './components/navbar.php';
       }
 
 ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-									<th>Farm Name</th>
-									<th>Farm Size (Acres)</th>
-                                        <th>Farm Location</th>
-										<th>Date Added</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Farm Name</th>
+                                    <th>Farm Size (Acres)</th>
+                                    <th>Farm Location</th>
+                                    <th>Date Added</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-		</div>
-
-
-<!--delete farm-->
-		<div class="modal" id='deleteFarmModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <div class="modal-body">
-
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this Farm?</p>
-                        <form method="POST" action="">
-                            <div class="form-group">
-                                <input type="text" hidden class="form-control" id="farmID" required readonly
-                                    name='farm_id'>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No,
-                                    Cancel</button>
-                                <button type="submit" name='delete-farm-btn'
-                                    class="btn btn-danger">Yes,Delete!</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
             </div>
-        </div>
-    </div>
 
 
+            <!--delete farm-->
+            <div class="modal" id='deleteFarmModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this Farm?</p>
+                                <form method="POST" action="">
+                                    <div class="form-group">
+                                        <input type="text" hidden class="form-control" id="farmID" required readonly
+                                            name='farm_id'>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No,
+                                            Cancel</button>
+                                        <button type="submit" name='delete-farm-btn'
+                                            class="btn btn-danger">Yes,Delete!</button>
+                                    </div>
+                                </form>
+                            </div>
 
+                        </div>
 
- <!--edit farm details-->
- <div class="modal" id="editFarmModal" tabindex="-1" role="dialog" aria-labelledby="editFarmModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editFarmModalLabel">Edit Farm Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form method="POST" action="">
-                        <div class="form-group">
-                            <input type="text" readonly hidden name="farm_id" class="form-control" id="farm_id" required>
+            </div>
+
+
+
+
+
+            <!--edit farm details-->
+            <div class="modal" id="editFarmModal" tabindex="-1" role="dialog" aria-labelledby="editFarmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editFarmModalLabel">Edit Farm Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" readonly class="col-form-label">Farm Name:</label>
-                            <input type="text" name="farm_name" class="form-control" id="farm_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" readonly class="col-form-label">Farm Size:</label>
-                            <input type="number" name="frm_size" class="form-control" id="farm_size" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" readonly class="col-form-label">Farm Location:</label>
-                            <label for="uni_semester_id">Select County:</label>
-                            <select class="form-control" id="county_id" name="cnty_id" required>
-                                <option value="">Select County..</option>
-                                <?php 
+                        <div class="modal-body">
+                            <form method="POST" action="">
+                                <div class="form-group">
+                                    <input type="text" readonly hidden name="farm_id" class="form-control" id="farm_id"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" readonly class="col-form-label">Farm Name:</label>
+                                    <input type="text" name="farm_name" class="form-control" id="farm_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" readonly class="col-form-label">Farm Size:</label>
+                                    <input type="number" name="frm_size" class="form-control" id="farm_size" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" readonly class="col-form-label">Farm Location:</label>
+                                    <label for="uni_semester_id">Select County:</label>
+                                    <select class="form-control" id="county_id" name="cnty_id" required>
+                                        <option value="">Select County..</option>
+                                        <?php 
 							// Retrieve the semesters from the database
 							$sql=mysqli_query($db,"select * from county_details");
 							while ($rw=mysqli_fetch_array($sql)) {
 							?>
-														<option value="<?php echo htmlentities($rw['county_id']);?>">
-															<?php echo htmlentities($rw['county_name']);?> County</option>
-														<?php
+                                        <option value="<?php echo htmlentities($rw['county_id']);?>">
+                                            <?php echo htmlentities($rw['county_name']);?> County</option>
+                                        <?php
 							}
 							?>
-                            </select>
-                        
+                                    </select>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-info" name="update-farm-details-btn">Update
+                                        Farm Details</button>
+                                </div>
+                            </form>
                         </div>
-                       
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-info" name="update-farm-details-btn">Update
-                                Farm Details</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            <!--end of modal-->
+
         </div>
-    </div> <!--end of modal-->
-
-	</div>
-</div>
-	<script>
-
-	    //edit farm details modal code
-	function editFarmModal() {
-		$("#editFarmModal").modal("show");
-	}
+        <?php
+include './components/footer.php';
+            ?>
+    </div>
+    <script>
+    //edit farm details modal code
+    function editFarmModal() {
+        $("#editFarmModal").modal("show");
+    }
     let editButtons = document.querySelectorAll(".edit-farm-modal-btn");
     editButtons.forEach(function(editButton) {
         editButton.addEventListener("click", function(e) {
@@ -253,11 +258,11 @@ include './components/navbar.php';
             let farm_name = editButton.dataset.farm_name;
             let farm_size = editButton.dataset.farm_size;
             let farm_location = editButton.dataset.farm_location;
-     
+
             document.getElementById("farm_id").value = farmid;
             document.getElementById("farm_name").value = farm_name;
             document.getElementById("farm_size").value = farm_size;
-			document.getElementById("county_id").value = farm_location;
+            document.getElementById("county_id").value = farm_location;
             // pre-select the option in the dropdown menu
             const county_select = document.querySelector('#county_id');
             county_select.value = farm_location;
@@ -268,8 +273,8 @@ include './components/navbar.php';
 
 
 
-	    // delete farm modal query
-		function deleteFarmModal() {
+    // delete farm modal query
+    function deleteFarmModal() {
         $("#deleteFarmModal").modal("show");
     }
     let deleteBtns = document.querySelectorAll(".deleteFarmBtn");
@@ -284,9 +289,10 @@ include './components/navbar.php';
             deleteFarmModal();
         });
     });
-	</script>
-<?php
+    </script>
+    <?php
 include './components/scripts.php';
 ?>
 </body>
+
 </html>
