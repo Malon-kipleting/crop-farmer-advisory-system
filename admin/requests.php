@@ -70,6 +70,16 @@ include './components/navbar.php';
               $farmer_phone= $row['farmer_phone'];
               $date_submitted = $row['date_added'];
               $status= $row['request_status'];
+              $desc= $row['short_description'];
+              $farm_id= $row['farm_id'];
+              $farm_name= $row['farm_name'];
+              $crop_id= $row['crop_id'];
+              $crop_name= $row['crop_name'];
+              $activity_id= $row['activity_id'];
+              $activity_name= $row['activity_name'];
+              $county_id= $row['farm_location'];
+              $county_name= $row['county_name'];
+
 
       echo "<tr> <td>" .$req_id.  "</td>";
       echo "<td>" . $farmer_fname." ". $farmer_lname."</td>";
@@ -79,8 +89,22 @@ include './components/navbar.php';
       echo "<td>" .$date_submitted."</td>";
       echo "<td>
         
-      <form method ='POST' action=''>
-      <input  type='text' hidden readonly name='request_id' value='$req_id'>
+      <form method ='POST' action='connection.php'>
+      <input  type='text' readonly hidden name='request_id' value='$req_id'>
+      <input  type='text' readonly hidden name='fname' value='$farmer_fname'>
+      <input  type='text' readonly hidden name='lname' value='$farmer_lname'>
+      <input  type='text' readonly hidden name='adm_mail' value='$farmer_email'>
+      <input  type='text' readonly hidden name='adm_phone' value='$farmer_phone'>
+      <input  type='text' readonly hidden name='shrt_desc' value='$desc'>
+      <input  type='text' readonly hidden name='req_status' value='$status'>
+      <input  type='text' readonly hidden name='farm_id' value='$farm_id'>
+      <input  type='text' readonly hidden name='farm_name' value='$farm_name'>
+      <input  type='text' readonly hidden name='crop_id' value='$crop_id'>
+      <input  type='text' readonly hidden name='crop_id' value='$crop_name'>
+      <input  type='text' readonly hidden name='activity_id' value='$activity_id'>
+      <input  type='text' readonly hidden name='activity_name' value='$activity_name'>
+      <input  type='text' readonly hidden name='activity_name' value='$county_id'>
+      <input  type='text' readonly hidden name='activity_name' value='$county_name'>
       <input type='submit' data-id= '$req_id' value='View More'  class='btn btn-success viewRequestBtn'>
       </form>
       </td> </tr>";
