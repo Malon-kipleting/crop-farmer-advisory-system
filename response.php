@@ -146,7 +146,7 @@ include './components/navbar.php';
 
 
       echo "<tr> <td>" .$request_id.  "</td>";
-      echo "<td>" .$farm_name." "."Acres"."</td>";
+      echo "<td>" .$farm_name."</td>";
       echo "<td>" . $county_name."</td>";
       echo "<td>" .$status."</td>";
       echo "<td>
