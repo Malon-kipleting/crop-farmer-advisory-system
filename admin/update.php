@@ -2,47 +2,46 @@
 include 'connection.php';
 $name = $_SESSION['adm_fname']. " ". $_SESSION['adm_lname'];
 $officer_id = $_SESSION['officerId'];
-$officer_id = $_SESSION['officerId'];
 $mail = $_SESSION['adm_mail'];
 $phone = $_SESSION['adm_tel']; 
 
-if (isset($_POST['update_farmer_details_btn'])) {
+if (isset($_POST['update_admin_details_btn'])) {
 
     //get user data
-    $farmer_id = $_POST['user_ID'];
-    $farmer_email = $_POST['user_email'];
-    $farmer_fname = $_POST['farmer_fname'];
-    $farmer_lname = $_POST['farmer_lname'];
-    $farmer_phone = $_POST['farmer_phone'];
+    $admin_id = $_POST['adm_ID'];
+    $admin_email = $_POST['adm_email'];
+    $admin_fname = $_POST['adm_fname'];
+    $admin_lname = $_POST['adm_lname'];
+    $admin_phone = $_POST['adm_phone'];
     
     //validating input
-    if (empty($farmer_email)) {
-    array_push($errors, "Farmer email is required");
+    if (empty($admin_email)) {
+    array_push($errors, "admin email is required");
     }
 
-    if (empty($farmer_fname)) {
-    array_push($errors, "Farmer fname is required");
+    if (empty($admin_fname)) {
+    array_push($errors, "admin fname is required");
     }
 
-    if (empty($farmer_lname)) {
-    array_push($errors, "Farmer lname is required");
+    if (empty($admin_lname)) {
+    array_push($errors, "admin lname is required");
     }
-    if (empty($farmer_phone)) {
-    array_push($errors, "Farmer phone is required");
+    if (empty($admin_phone)) {
+    array_push($errors, "admin phone is required");
     }
 
     if (count($errors) == 0) {
-        $update_farmer_details_query = "UPDATE `farmer_details` SET `farmer_fname`='$farmer_fname',`farmer_lname`='$farmer_lname',`farmer_email`='$farmer_email',`farmer_phone`='$farmer_phone' WHERE `farmer_id`='$farmer_id'";
-        $farmer_details_results = mysqli_query($db, $update_farmer_details_query);
+        $update_admin_details_query = "UPDATE `extension_officer` SET `first_name`='$admin_fname',`last_name`='$admin_lname',`officer_email`='$admin_email',`officer_phone`='$admin_phone' WHERE `officer_id`='$admin_id'";
+        $admin_details_results = mysqli_query($db, $update_admin_details_query);
 
-        $_SESSION['farmerFname']=$farmer_fname;
-        $_SESSION['farmerLname']=$farmer_lname;
-        $_SESSION['farmer_mail']=$farmer_email;
-        $_SESSION['farmer_tel']=$farmer_phone;  
+        $_SESSION['adm_fname']=$admin_fname;
+        $_SESSION['adm_lname']=$admin_lname;
+        $_SESSION['adm_mail']=$admin_email;
+        $_SESSION['adm_tel']=$admin_phone;  
         
         header('location: update.php');
     }else{
-        array_push($errors, "unable to update farmer details");
+        array_push($errors, "unable to update details");
         header('location: update.php');
     }
 
@@ -76,12 +75,11 @@ include './components/navbar.php';
                     <tr class="w3-blue">
                         <th>Update User Details</th>
                         <th>&nbsp;</th>
-                        <td><input type="text" readonly name="user_ID" hidden
-                                value="<?php echo $_SESSION['farmerId'];?>"></td>
+                        <td><input type="text" readonly hidden name="adm_ID" value="<?php echo $officer_id;?>"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="email" name="user_email" value="<?php echo $mail;?>"></td>
+                        <td><input type="email" name="adm_email" value="<?php echo $mail;?>"></td>
                     </tr>
                     <tr>
                         <td>First Name</td>
@@ -94,7 +92,7 @@ include './components/navbar.php';
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td><input type="text" name="farmer_phone" value="<?php echo $phone; ?>"></td>
+                        <td><input type="text" name="adm_phone" value="<?php echo $phone; ?>"></td>
                     </tr>
 
                 </table>

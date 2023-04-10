@@ -47,40 +47,25 @@ include './components/navbar.php';
                 </a>
             </div>
 
-
             <div class="col-md-4">
-                <a href="./users.php">
+                <a href="./update.php">
                     <div class="card card-hover">
                         <div class="box bg-info text-center p-2">
                             <h1 class="font-light text-white">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-id-badge"></i>
                             </h1>
-                            <h6 class="text-white">Users</h6>
+                            <h6 class="text-white">Profile</h6>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
 
-        <div class="col-md-4 mt-3">
-            <a href="./users.php">
-                <div class="card card-hover">
-                    <div class="box bg-info text-center p-2">
-                        <h1 class="font-light text-white">
-                            <i class="fa fa-id-badge"></i>
-                        </h1>
-                        <h6 class="text-white">Profile</h6>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
 
-
-    <?php
+        <?php
 include './components/footer.php';
   ?>
-    <?php
+        <?php
 include './components/scripts.php';
   ?>
     </div>
