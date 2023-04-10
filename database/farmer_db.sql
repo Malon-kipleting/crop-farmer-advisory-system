@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2023 at 06:06 PM
+-- Generation Time: Apr 10, 2023 at 06:24 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -180,6 +180,7 @@ CREATE TABLE `farmer_request_advice_details` (
 
 INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_added`) VALUES
 (2, 'Dqq7WbH', '37756501', 'FRM-Y0RYK1', 'CRP01', 'ACT01', 'I want to plant maize, which is the best fertilizer for my farm and the best maize?', '2023-04-10 18:26:41'),
+(3, 'tOpGuUU', '37505349', 'FRM-ESY9TW', 'CRP02', 'ACT02', 'I want to spray the beans I have planted on this farm. Please tell me which fertilizer to use.', '2023-04-10 19:11:14'),
 (1, 'vAQRiTp', '37756501', 'FRM-Y0RYK1', 'CRP01', 'ACT01', 'I want to plant maize, which maize and fertilizer should i use to achieve the most?', '2023-04-10 16:40:39');
 
 -- --------------------------------------------------------
@@ -227,7 +228,8 @@ CREATE TABLE `request_response_details` (
 --
 
 INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
-(1, 'Dqq7WbH', NULL, 'No Response Yet!', 'Pending', '2023-04-10 18:26:41');
+(1, 'Dqq7WbH', NULL, 'No Response Yet!', 'Pending', '2023-04-10 18:26:41'),
+(2, 'tOpGuUU', NULL, 'No Response Yet!', 'Pending', '2023-04-10 19:11:15');
 
 -- --------------------------------------------------------
 
@@ -368,7 +370,7 @@ ALTER TABLE `farmer_owner_details`
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
@@ -380,7 +382,7 @@ ALTER TABLE `farm_details`
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
