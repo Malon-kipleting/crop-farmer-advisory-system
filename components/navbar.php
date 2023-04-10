@@ -13,9 +13,9 @@
                 <a href="response.php" class="w3-bar-item w3-button">Responses</a>
                 <a href="update.php" class="w3-bar-item w3-button">Profile</a>
 
-                <div class="w3-bar-item w3-right" style="font-size:20px">
+                <div class="w3-bar-item w3-right" style="font-size:24px">
                     Welcome: <?php echo $name; ?>
-                    <a href='logout.php' style="color:red">Log out</a>
+                    <a href='logout.php' type="button" class="btn btn-danger btn-lg">Log Out</a>
                 </div>
             </div>
         </div>
