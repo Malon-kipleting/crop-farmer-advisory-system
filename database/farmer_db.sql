@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 10, 2023 at 07:34 AM
--- Server version: 5.7.24
--- PHP Version: 7.4.1
+-- Host: localhost
+-- Generation Time: Apr 10, 2023 at 03:37 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,8 +31,8 @@ CREATE TABLE `activity_details` (
   `id` int(11) NOT NULL,
   `activity_id` varchar(100) NOT NULL,
   `activity_name` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `activity_details`
@@ -46,18 +45,6 @@ INSERT INTO `activity_details` (`id`, `activity_id`, `activity_name`, `date_adde
 -- --------------------------------------------------------
 
 --
--- Table structure for table `advice_details`
---
-
-CREATE TABLE `advice_details` (
-  `id` int(11) NOT NULL,
-  `advice_id` varchar(255) NOT NULL,
-  `advice_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `county_details`
 --
 
@@ -65,7 +52,7 @@ CREATE TABLE `county_details` (
   `id` int(11) NOT NULL,
   `county_id` varchar(20) NOT NULL,
   `county_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `county_details`
@@ -85,8 +72,8 @@ CREATE TABLE `crop_details` (
   `id` int(11) NOT NULL,
   `crop_id` varchar(20) NOT NULL,
   `crop_name` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `crop_details`
@@ -111,8 +98,8 @@ CREATE TABLE `extension_officer` (
   `officer_phone` varchar(50) NOT NULL,
   `Gender` varchar(50) NOT NULL,
   `officer_password` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `extension_officer`
@@ -136,16 +123,16 @@ CREATE TABLE `farmer_details` (
   `farmer_phone` varchar(50) NOT NULL,
   `Gender` varchar(50) NOT NULL,
   `farmer_password` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `farmer_details`
 --
 
 INSERT INTO `farmer_details` (`id`, `farmer_id`, `farmer_fname`, `farmer_lname`, `farmer_email`, `farmer_phone`, `Gender`, `farmer_password`, `date_added`) VALUES
-(1, '37505349', 'Benson', 'Makau', 'benson.m@blinx.co.ke', '758413462', 'Male', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2023-03-04 12:06:21'),
-(2, '37756501', 'Malon', 'Kipleting', 'malonkipleting790@gmail.com', '713447936', 'Male', 'f74d8ed4e85c18a2ecccf397d5a60c33', '2023-03-04 12:06:21');
+(1, '37505349', 'Benson', 'Makau', 'benson.m@blinx.co.ke', '0758413462', 'Male', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2023-03-04 12:06:21'),
+(2, '37756501', 'Malon', 'Kipleting', 'malonkipleting790@gmail.com', '0713447936', 'Male', 'f74d8ed4e85c18a2ecccf397d5a60c33', '2023-03-04 12:06:21');
 
 -- --------------------------------------------------------
 
@@ -157,17 +144,16 @@ CREATE TABLE `farmer_owner_details` (
   `id` int(11) NOT NULL,
   `farm_id` varchar(100) NOT NULL,
   `owner_id` varchar(100) NOT NULL,
-  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `farmer_owner_details`
 --
 
 INSERT INTO `farmer_owner_details` (`id`, `farm_id`, `owner_id`, `date_updated`) VALUES
-(2, 'FRM-KZH96A', '37756501', '2023-03-31 12:16:40'),
-(3, 'FRM-OGYLCF', '37756501', '2023-03-31 12:17:09'),
-(5, 'FRM-QD5OFF', '37756501', '2023-04-05 09:36:32');
+(7, 'FRM-ESY9TW', '37505349', '2023-04-10 13:29:03'),
+(8, 'FRM-K9BNEX', '37505349', '2023-04-10 13:29:20');
 
 -- --------------------------------------------------------
 
@@ -183,17 +169,8 @@ CREATE TABLE `farmer_request_advice_details` (
   `crop_id` varchar(100) NOT NULL,
   `activity_id` varchar(100) NOT NULL,
   `short_description` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `farmer_request_advice_details`
---
-
-INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_added`) VALUES
-(1, '0gIFuhn', '37756501', 'FRM-OGYLCF', 'CRP01', 'ACT01', 'fhhjhhjhghggh', '2023-03-31 19:09:47'),
-(2, 'pExGxA5', '37756501', 'FRM-QD5OFF', 'CRP01', 'ACT02', 'inwan', '2023-04-05 12:39:13'),
-(3, 'w8ZuDeb', '37756501', 'FRM-KZH96A', 'CRP01', 'ACT01', 'i want to plant maize', '2023-04-05 15:13:18');
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -207,17 +184,16 @@ CREATE TABLE `farm_details` (
   `farm_name` varchar(255) NOT NULL,
   `farm_location` varchar(255) NOT NULL,
   `farm_size` varchar(100) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `farm_details`
 --
 
 INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
-(2, 'FRM-KZH96A', 'Yegen Farm', 'county001', '15', '2023-03-31 12:16:40'),
-(3, 'FRM-OGYLCF', 'Meken', 'county001', '8', '2023-03-31 12:17:08'),
-(5, 'FRM-QD5OFF', 'violet', 'county001', '3', '2023-04-05 09:36:32');
+(1, 'FRM-ESY9TW', 'Mwala Farm', 'county001', '4', '2023-04-10 13:29:03'),
+(2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county002', '15', '2023-04-10 13:29:19');
 
 -- --------------------------------------------------------
 
@@ -231,17 +207,8 @@ CREATE TABLE `request_response_details` (
   `officer_id` varchar(100) DEFAULT NULL,
   `response` varchar(255) DEFAULT NULL,
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `request_response_details`
---
-
-INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
-(9, '0gIFuhn', NULL, NULL, 'Pending', '2023-03-31 19:09:47'),
-(10, 'pExGxA5', NULL, NULL, 'Pending', '2023-04-05 12:39:14'),
-(11, 'w8ZuDeb', NULL, NULL, 'Pending', '2023-04-05 15:13:18');
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -254,7 +221,7 @@ CREATE TABLE `soil_details` (
   `soil_id` int(11) NOT NULL,
   `soil_name` int(11) NOT NULL,
   `soil_property` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -266,13 +233,6 @@ CREATE TABLE `soil_details` (
 ALTER TABLE `activity_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `act_id` (`activity_id`);
-
---
--- Indexes for table `advice_details`
---
-ALTER TABLE `advice_details`
-  ADD PRIMARY KEY (`advice_id`),
-  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `county_details`
@@ -356,12 +316,6 @@ ALTER TABLE `activity_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `advice_details`
---
-ALTER TABLE `advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `county_details`
 --
 ALTER TABLE `county_details`
@@ -389,25 +343,25 @@ ALTER TABLE `farmer_details`
 -- AUTO_INCREMENT for table `farmer_owner_details`
 --
 ALTER TABLE `farmer_owner_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
@@ -440,6 +394,13 @@ ALTER TABLE `farmer_request_advice_details`
 --
 ALTER TABLE `farm_details`
   ADD CONSTRAINT `locid` FOREIGN KEY (`farm_location`) REFERENCES `county_details` (`county_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `request_response_details`
+--
+ALTER TABLE `request_response_details`
+  ADD CONSTRAINT `officer` FOREIGN KEY (`officer_id`) REFERENCES `extension_officer` (`officer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `request` FOREIGN KEY (`request_id`) REFERENCES `farmer_request_advice_details` (`request_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
