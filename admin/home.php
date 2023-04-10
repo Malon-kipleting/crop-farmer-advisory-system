@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-$name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
+$name = $_SESSION['adm_fname']. " ". $_SESSION['adm_lname'];
 ?>
 
 <!DOCTYPE html>
@@ -20,50 +20,67 @@ $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 include './components/navbar.php';
 ?>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="./images/slide1.jpg" alt="First slide"
-                                style=" max-height: 700px;">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="./images/slide2.jpg" alt="Second slide"
-                                style=" max-height: 700px;">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="./images/slide3.jpg" alt="Third slide"
-                                style=" max-height: 700px;">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="./images/slide4.jpg" alt="Fourth slide"
-                                style=" max-height: 700px;">
+        <div class="row pl-3 pr-3">
+            <div class="col-md-4">
+                <a href="./requests.php">
+                    <div class="card card-hover">
+                        <div class="box bg-primary text-center p-2">
+                            <h1 class="font-light text-white">
+                                <i class="fa fa-exchange-alt"></i>
+                            </h1>
+                            <h6 class="text-white">Requests</h6>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="./farmers.php">
+                    <div class="card card-hover">
+                        <div class="box bg-success text-center p-2">
+                            <h1 class="font-light text-white">
+                                <i class="fa fa-newspaper"></i>
+                            </h1>
+                            <h6 class="text-white">Reports</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="./users.php">
+                    <div class="card card-hover">
+                        <div class="box bg-info text-center p-2">
+                            <h1 class="font-light text-white">
+                                <i class="fa fa-user"></i>
+                            </h1>
+                            <h6 class="text-white">Users</h6>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
 
+        <div class="col-md-4 mt-3">
+            <a href="./users.php">
+                <div class="card card-hover">
+                    <div class="box bg-info text-center p-2">
+                        <h1 class="font-light text-white">
+                            <i class="fa fa-id-badge"></i>
+                        </h1>
+                        <h6 class="text-white">Profile</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
-        <?php
+
+    <?php
 include './components/footer.php';
   ?>
-        <?php
+    <?php
 include './components/scripts.php';
   ?>
     </div>
