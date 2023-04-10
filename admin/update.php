@@ -1,6 +1,10 @@
 <?php
 include 'connection.php';
-$name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
+$name = $_SESSION['adm_fname']. " ". $_SESSION['adm_lname'];
+$officer_id = $_SESSION['officerId'];
+$officer_id = $_SESSION['officerId'];
+$mail = $_SESSION['adm_mail'];
+$phone = $_SESSION['adm_tel']; 
 
 if (isset($_POST['update_farmer_details_btn'])) {
 
@@ -70,34 +74,34 @@ include './components/navbar.php';
             <form method="POST" action="">
                 <table class="w3-table w3-striped w3-bordered w3-card-4">
                     <tr class="w3-blue">
-                        <th>Change farmer Details</th>
+                        <th>Update User Details</th>
                         <th>&nbsp;</th>
                         <td><input type="text" readonly name="user_ID" hidden
                                 value="<?php echo $_SESSION['farmerId'];?>"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="email" name="user_email" value="<?php echo $_SESSION['farmer_mail'];?>"></td>
+                        <td><input type="email" name="user_email" value="<?php echo $mail;?>"></td>
                     </tr>
                     <tr>
                         <td>First Name</td>
-                        <td><input type="text" name="farmer_fname" value="<?php echo $_SESSION['farmerFname']; ?>"></td>
+                        <td><input type="text" name="adm_fname" value="<?php echo  $_SESSION['adm_fname']; ?>"></td>
 
                     </tr>
                     <tr>
                         <td>Surname</td>
-                        <td><input type="text" name="farmer_lname" value="<?php echo $_SESSION['farmerLname']; ?>"></td>
+                        <td><input type="text" name="adm_lname" value="<?php echo $_SESSION['adm_lname']; ?>"></td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td><input type="text" name="farmer_phone" value="<?php echo $_SESSION['farmer_tel']; ?>"></td>
+                        <td><input type="text" name="farmer_phone" value="<?php echo $phone; ?>"></td>
                     </tr>
 
                 </table>
                 <p>
                 <div class="w3-btn-group w3-right">
-                    <input type="submit" class="btn btn-primary btn-block m-2" name="update_farmer_details_btn"
-                        value="Update Farmer Details">
+                    <input type="submit" class="btn btn-success btn-block m-2" name="update_admin_details_btn"
+                        value="Update Details">
                 </div>
                 </p>
             </form>
