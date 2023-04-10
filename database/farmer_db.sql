@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 31, 2023 at 04:13 PM
+-- Generation Time: Apr 10, 2023 at 07:34 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -103,14 +103,23 @@ INSERT INTO `crop_details` (`id`, `crop_id`, `crop_name`, `date_added`) VALUES
 --
 
 CREATE TABLE `extension_officer` (
-  `officer_id` int(45) NOT NULL,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `officer_email` varchar(255) NOT NULL,
-  `officer_phone` int(10) NOT NULL,
+  `id` int(11) NOT NULL,
+  `officer_id` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `officer_email` varchar(50) NOT NULL,
+  `officer_phone` varchar(50) NOT NULL,
+  `Gender` varchar(50) NOT NULL,
   `officer_password` varchar(255) NOT NULL,
-  `date_created` date NOT NULL
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `extension_officer`
+--
+
+INSERT INTO `extension_officer` (`id`, `officer_id`, `first_name`, `last_name`, `officer_email`, `officer_phone`, `Gender`, `officer_password`, `date_created`) VALUES
+(1, '001', 'Malon', 'Kipleting', 'malonkipleting790@gmail.com', '0713447936', 'Male', '1234', '2023-04-05 15:51:51');
 
 -- --------------------------------------------------------
 
@@ -157,7 +166,8 @@ CREATE TABLE `farmer_owner_details` (
 
 INSERT INTO `farmer_owner_details` (`id`, `farm_id`, `owner_id`, `date_updated`) VALUES
 (2, 'FRM-KZH96A', '37756501', '2023-03-31 12:16:40'),
-(3, 'FRM-OGYLCF', '37756501', '2023-03-31 12:17:09');
+(3, 'FRM-OGYLCF', '37756501', '2023-03-31 12:17:09'),
+(5, 'FRM-QD5OFF', '37756501', '2023-04-05 09:36:32');
 
 -- --------------------------------------------------------
 
@@ -181,7 +191,9 @@ CREATE TABLE `farmer_request_advice_details` (
 --
 
 INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_added`) VALUES
-(1, '0gIFuhn', '37756501', 'FRM-OGYLCF', 'CRP01', 'ACT01', 'fhhjhhjhghggh', '2023-03-31 19:09:47');
+(1, '0gIFuhn', '37756501', 'FRM-OGYLCF', 'CRP01', 'ACT01', 'fhhjhhjhghggh', '2023-03-31 19:09:47'),
+(2, 'pExGxA5', '37756501', 'FRM-QD5OFF', 'CRP01', 'ACT02', 'inwan', '2023-04-05 12:39:13'),
+(3, 'w8ZuDeb', '37756501', 'FRM-KZH96A', 'CRP01', 'ACT01', 'i want to plant maize', '2023-04-05 15:13:18');
 
 -- --------------------------------------------------------
 
@@ -204,7 +216,8 @@ CREATE TABLE `farm_details` (
 
 INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
 (2, 'FRM-KZH96A', 'Yegen Farm', 'county001', '15', '2023-03-31 12:16:40'),
-(3, 'FRM-OGYLCF', 'Meken', 'county001', '8', '2023-03-31 12:17:08');
+(3, 'FRM-OGYLCF', 'Meken', 'county001', '8', '2023-03-31 12:17:08'),
+(5, 'FRM-QD5OFF', 'violet', 'county001', '3', '2023-04-05 09:36:32');
 
 -- --------------------------------------------------------
 
@@ -226,7 +239,9 @@ CREATE TABLE `request_response_details` (
 --
 
 INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
-(9, '0gIFuhn', NULL, NULL, 'Pending', '2023-03-31 19:09:47');
+(9, '0gIFuhn', NULL, NULL, 'Pending', '2023-03-31 19:09:47'),
+(10, 'pExGxA5', NULL, NULL, 'Pending', '2023-04-05 12:39:14'),
+(11, 'w8ZuDeb', NULL, NULL, 'Pending', '2023-04-05 15:13:18');
 
 -- --------------------------------------------------------
 
@@ -277,7 +292,9 @@ ALTER TABLE `crop_details`
 -- Indexes for table `extension_officer`
 --
 ALTER TABLE `extension_officer`
-  ADD KEY `id` (`officer_id`);
+  ADD PRIMARY KEY (`officer_id`),
+  ADD KEY `id` (`officer_id`),
+  ADD KEY `ghhjj` (`id`);
 
 --
 -- Indexes for table `farmer_details`
@@ -357,6 +374,12 @@ ALTER TABLE `crop_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `extension_officer`
+--
+ALTER TABLE `extension_officer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `farmer_details`
 --
 ALTER TABLE `farmer_details`
@@ -366,25 +389,25 @@ ALTER TABLE `farmer_details`
 -- AUTO_INCREMENT for table `farmer_owner_details`
 --
 ALTER TABLE `farmer_owner_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
