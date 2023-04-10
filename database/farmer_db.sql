@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2023 at 06:24 PM
+-- Generation Time: Apr 10, 2023 at 11:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -106,7 +106,7 @@ CREATE TABLE `extension_officer` (
 --
 
 INSERT INTO `extension_officer` (`id`, `officer_id`, `first_name`, `last_name`, `officer_email`, `officer_phone`, `Gender`, `officer_password`, `date_created`) VALUES
-(1, '001', 'Malon', 'Kipleting', 'malonkipleting790@gmail.com', '0713447936', 'Male', '1234', '2023-04-05 15:51:51');
+(1, 'PF01', 'Justus', 'Sang', 'sangjustus10@blinx.co.ke', '0713447936', 'Male', '3b7d512fc716f4848319d0a0856a2d5f', '2023-04-05 15:51:51');
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ CREATE TABLE `farm_details` (
 
 INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
 (4, 'FRM-AGOH65', 'Sugoi Farm', 'county002', '10', '2023-04-10 13:39:41'),
-(1, 'FRM-ESY9TW', 'Mwala Farm', 'county001', '4', '2023-04-10 13:29:03'),
+(1, 'FRM-ESY9TW', 'Mwala Farm', 'county002', '4', '2023-04-10 13:29:03'),
 (2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county002', '15', '2023-04-10 13:29:19'),
 (3, 'FRM-Y0RYK1', 'Yegen Farm', 'county001', '24', '2023-04-10 13:39:19');
 
