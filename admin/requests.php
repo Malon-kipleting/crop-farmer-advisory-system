@@ -55,6 +55,7 @@ include './components/navbar.php';
       INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
       INNER JOIN activity_details ON activity_details.activity_id = farmer_request_advice_details.activity_id
       INNER JOIN farmer_details ON farmer_details.farmer_id = farmer_request_advice_details.farmer_id
+      WHERE request_response_details.request_status = 'Pending'
       ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
@@ -75,7 +76,7 @@ include './components/navbar.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden readonly name='request_id' value='$req_id'>
-      <input type='submit' data-id= '$req_id' value='Read More'  class='btn btn-primary viewRequestBtn'>
+      <input type='submit' data-id= '$req_id' value='View More'  class='btn btn-success viewRequestBtn'>
       </form>
       </td> </tr>";
       }
