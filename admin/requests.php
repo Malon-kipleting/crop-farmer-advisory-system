@@ -41,6 +41,7 @@ include './components/navbar.php';
                                             <th>Request ID</th>
                                             <th>Farmer Name</th>
                                             <th>Farmer Email</th>
+                                            <th>Request Status</th>
                                             <th>Date Submitted</th>
                                             <th>Action</th>
                                         </tr>
@@ -66,11 +67,12 @@ include './components/navbar.php';
               $farmer_lname = $row['farmer_lname'];
               $farmer_email = $row['farmer_email'];
               $date_submitted = $row['date_added'];
-            //   $farmer_id = $row['farmer_id'];
+              $status= $row['request_status'];
 
       echo "<tr> <td>" .$req_id.  "</td>";
       echo "<td>" . $farmer_fname." ". $farmer_lname."</td>";
       echo "<td>" .$farmer_email."</td>";
+      echo "<td>" .$status."</td>";
       echo "<td>" .$date_submitted."</td>";
       echo "<td>
         
@@ -96,6 +98,7 @@ include './components/navbar.php';
                                             <th>Request ID</th>
                                             <th>Farmer Name</th>
                                             <th>Farmer Email</th>
+                                            <th>Request Status</th>
                                             <th>Date Submitted</th>
                                             <th>Action</th>
                                         </tr>
