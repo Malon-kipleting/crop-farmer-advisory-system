@@ -78,7 +78,7 @@ if (isset($_POST['get_advice_btn'])) {
      VALUES ('$requestId','$farmer','$farm_id','$crop_id','$activity_id','$request_message')";
     $request_results = mysqli_query($db, $request_query);
 
-    $advice_query = "INSERT INTO `request_response_details`(`request_id`, `request_status`) VALUES ('$requestId','Pending')";
+    $advice_query = "INSERT INTO `request_response_details`(`request_id`, `request_status`, `response`) VALUES ('$requestId','Pending','No Response Yet!')";
     $advice_result = mysqli_query($db, $advice_query);
     
     header('location: response.php');
