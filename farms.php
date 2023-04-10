@@ -240,6 +240,9 @@ include './components/navbar.php';
             <!--end of modal-->
 
         </div>
+        <?php
+include './components/footer.php';
+            ?>
     </div>
     <script>
     //edit farm details modal code

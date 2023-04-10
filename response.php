@@ -76,46 +76,51 @@ include './components/navbar.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">List of Farms</h5>
+                        <h5 class="card-title">List of Responses</h5>
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
                             width="100%">
                             <thead>
                                 <tr>
-                                    <th>Farm Name</th>
-                                    <th>Farm Size (Acres)</th>
+                                    <th>Request ID</th>
+                                    <th>Farm</th>
                                     <th>Farm Location</th>
-                                    <th>Date Added</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
   if($farmer_id){
-      $data_fetch_query = "SELECT * FROM `farm_details`
-	INNER JOIN farmer_owner_details ON farmer_owner_details.farm_id = farm_details.farm_id
-	INNER JOIN county_details ON county_details.county_id = farm_details.farm_location WHERE farmer_owner_details.owner_id = '$farmer_id'";
+      $data_fetch_query = "SELECT * FROM `farmer_request_advice_details`
+      INNER JOIN request_response_details ON request_response_details.request_id = farmer_request_advice_details.request_id
+      INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
+      INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
+      WHERE farmer_request_advice_details.farmer_id  = '$farmer_id'";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
+              $request_id = $row['request_id'];
+              $farmer_id = $row['farmer_id'];
               $farm_id = $row['farm_id'];
               $farm_name = $row['farm_name'];
-              $farm_size = $row['farm_size'];
-              $farm_loc = $row['county_id'];
-              $farm_location = $row['county_name'];
-              $date_created = $row['date_added'];
+              $crop_id = $row['crop_id'];
+              $activity_id = $row['activity_id'];
+              $county_name = $row['county_name'];
+              $description = $row['short_description'];
+              $status= $row['request_status'];
 
 
 
-      echo "<tr> <td>" .$farm_name.  "</td>";
-      echo "<td>" .$farm_size." "."Acres"."</td>";
-      echo "<td>" .$farm_location."</td>";
-      echo "<td>" .$date_created."</td>";
+
+      echo "<tr> <td>" .$request_id.  "</td>";
+      echo "<td>" .$farm_name." "."Acres"."</td>";
+      echo "<td>" . $county_name."</td>";
+      echo "<td>" .$status."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='Farm_id' value='$farm_id'>
-      <input type='submit' data-farm_id='$farm_id'  data-farm_name='$farm_name' data-farm_size='$farm_size' data-farm_location='$farm_loc' value='Edit Details' name='edit-farm-btn' class='btn btn-success edit-farm-modal-btn m-2'>
-      <input type='submit' data-id= '$farm_id' value='Delete Farm'  class='btn btn-danger deleteFarmBtn'>
+      <input type='submit' data-id= '$farm_id' value='Print Report'  class='btn btn-primary deleteFarmBtn'>
       </form>
       </td> </tr>";
       }
@@ -132,10 +137,10 @@ include './components/navbar.php';
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Farm Name</th>
-                                    <th>Farm Size (Acres)</th>
+                                    <th>Request ID</th>
+                                    <th>Farm</th>
                                     <th>Farm Location</th>
-                                    <th>Date Added</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -240,6 +245,9 @@ include './components/navbar.php';
             <!--end of modal-->
 
         </div>
+        <?php
+include './components/footer.php';
+            ?>
     </div>
     <script>
     //edit farm details modal code
