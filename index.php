@@ -39,6 +39,8 @@ include './components/header.php';
                             placeholder="Password">
                     </div>
                     <input type="submit" class="btn btn-primary btn-block" name="login_btn" value="Log In" />
+                    <hr>
+                    <p class="text-center">Not a member? <a href="signup.php">Sign Up Here</a></p>
                 </form>
             </div>
             <div class="col-md-4"></div>
