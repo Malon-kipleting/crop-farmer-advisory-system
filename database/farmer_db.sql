@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2023 at 03:37 PM
+-- Generation Time: Apr 10, 2023 at 06:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -153,7 +153,9 @@ CREATE TABLE `farmer_owner_details` (
 
 INSERT INTO `farmer_owner_details` (`id`, `farm_id`, `owner_id`, `date_updated`) VALUES
 (7, 'FRM-ESY9TW', '37505349', '2023-04-10 13:29:03'),
-(8, 'FRM-K9BNEX', '37505349', '2023-04-10 13:29:20');
+(8, 'FRM-K9BNEX', '37505349', '2023-04-10 13:29:20'),
+(9, 'FRM-Y0RYK1', '37756501', '2023-04-10 13:39:19'),
+(10, 'FRM-AGOH65', '37756501', '2023-04-10 13:39:42');
 
 -- --------------------------------------------------------
 
@@ -168,9 +170,17 @@ CREATE TABLE `farmer_request_advice_details` (
   `farm_id` varchar(100) NOT NULL,
   `crop_id` varchar(100) NOT NULL,
   `activity_id` varchar(100) NOT NULL,
-  `short_description` varchar(255) NOT NULL,
+  `short_description` varchar(800) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `farmer_request_advice_details`
+--
+
+INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_added`) VALUES
+(2, 'Dqq7WbH', '37756501', 'FRM-Y0RYK1', 'CRP01', 'ACT01', 'I want to plant maize, which is the best fertilizer for my farm and the best maize?', '2023-04-10 18:26:41'),
+(1, 'vAQRiTp', '37756501', 'FRM-Y0RYK1', 'CRP01', 'ACT01', 'I want to plant maize, which maize and fertilizer should i use to achieve the most?', '2023-04-10 16:40:39');
 
 -- --------------------------------------------------------
 
@@ -192,8 +202,10 @@ CREATE TABLE `farm_details` (
 --
 
 INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
+(4, 'FRM-AGOH65', 'Sugoi Farm', 'county002', '10', '2023-04-10 13:39:41'),
 (1, 'FRM-ESY9TW', 'Mwala Farm', 'county001', '4', '2023-04-10 13:29:03'),
-(2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county002', '15', '2023-04-10 13:29:19');
+(2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county002', '15', '2023-04-10 13:29:19'),
+(3, 'FRM-Y0RYK1', 'Yegen Farm', 'county001', '24', '2023-04-10 13:39:19');
 
 -- --------------------------------------------------------
 
@@ -205,10 +217,17 @@ CREATE TABLE `request_response_details` (
   `id` int(11) NOT NULL,
   `request_id` varchar(100) NOT NULL,
   `officer_id` varchar(100) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
+  `response` varchar(255) NOT NULL DEFAULT 'No Response Yet. Check Later',
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `request_response_details`
+--
+
+INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
+(1, 'Dqq7WbH', NULL, 'No Response Yet!', 'Pending', '2023-04-10 18:26:41');
 
 -- --------------------------------------------------------
 
@@ -343,25 +362,25 @@ ALTER TABLE `farmer_details`
 -- AUTO_INCREMENT for table `farmer_owner_details`
 --
 ALTER TABLE `farmer_owner_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
