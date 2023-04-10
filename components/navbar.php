@@ -1,7 +1,7 @@
 <div id="">
     <fieldset class="w3-green">
         <div id="">
-            <h1>
+            <h1 style="font-size:35px; padding:10px">
                 <center>Crop Farmer Advisory System<center>
             </h1>
             <div class="w3-bar w3-black" style="padding:20px;font-size:20px;">
