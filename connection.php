@@ -7,7 +7,7 @@ session_start();
 
 // connect to the database
 try{
-    $db = mysqli_connect('localhost', 'malon', 'malon', 'farmer_db');
+    $db = mysqli_connect('localhost', 'benson', 'benson', 'farmer_db');
     //echo 'Database Connected Successfully';
     }
     catch(Exception $e) {
