@@ -48,7 +48,7 @@ include './components/header.php';
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Gender</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="gender">
-                            <option value="">Select gender</option>
+                            <option value="" selected>Select gender</option>
                             <option value="male"> Male</option>
                             <option value="female">Female</option>
                         </select>
