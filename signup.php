@@ -1,53 +1,90 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sign up</title>
-        <link rel="stylesheet" href="css/w3css.css">
-        <link rel="stylesheet" href="css/home.css">
-    </head>
-    <body class="w3-mobile">
-        <div id="container">
-            <div class="w3-green">
-                <h2><center><b>Sign Up</b><center></h2>
-            </div >
-            <div id="main" class="w3-center w3-card-2 w3-responsive w3-mobile" style="width: 50%; margin:0 auto;">
-            <div id="main" class="w3-center w3-card-2 w3-responsive w3-content"> 
-                <form name="myForm" class="w3-formfield" method="POST" onsubmit="validateForm()" action="connection.php" style="width: 80%;">
-                <fieldset>
-                    <input class="w3-input" style="width: 95%;" type="text" placeholder="First Name" name="fname"  required><br>
-                    <input class="w3-input" style="width: 95%;" type="text" placeholder="Last Name" name="lname"  required><br>
-                    <input class="w3-input" style="width: 95%;" type="number" placeholder="ID Number" name="id_number" ><br>
-                    <input class="w3-input" style="width: 95%;" type="email" placeholder="Email" name="email"  required><br>
-                    <input class="w3-input" style="width: 95%;" type="tel" placeholder="Phone number" name="contact_no"  required><br>
-                   
-                    <select class="w3-input" style="width: 95%;" name="gender" placeholder="gender" required>
-                        <option value="">Select gender</option>
-                        <option value="male"> Male</option>
-                        <option value="female">Female</option>
-                    </select><br>
-                    <input class="w3-input" style="width: 95%;" type="password" placeholder="Password" name="password_1"  required><br>
-                    <input class="w3-input" style="width: 95%;" type="password" placeholder="Confirm Password" name="password_2" required><br>
-                    <input class="w3-btn w3-green" style="width: 80%" name="register_farmer_btn"  type="submit" value="Submit"><br>
-                    <p>already have an account? <b><a href="index.php">Login</a></b></p>
-                </fieldset>
+
+<head>
+    <title>Sign Up</title>
+    <?php
+include './components/header.php';
+?>
+</head>
+
+<body>
+    <div id="container">
+        <div class="w3-green p-3 mb-3">
+            <h2><b>
+                    <center>Crop Farmer's Advisory System: A case of Best Practices<center>
+                </b></h2>
+            <p><b>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form name="myForm" method="POST" onsubmit="validateForm()" action="connection.php">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Firstname</label>
+                        <input type="text" class="form-control" name="fname" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Lastname</label>
+                        <input type="text" class="form-control" name="lname" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">ID Number</label>
+                        <input type="text" class="form-control" name="id_number" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Phone</label>
+                        <input type="tel" class="form-control" name="contact_no" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Gender</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="gender">
+                            <option value="">Select gender</option>
+                            <option value="male"> Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password_1" id="exampleInputPassword1"
+                            placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_2" id="exampleInputPassword1"
+                            placeholder="Password">
+                    </div>
+
+                    <input type="submit" class="btn btn-success btn-block" name="register_farmer_btn" value="Register">
+                    <hr>
+                    <p class="text-center">Already a member? <a href="index.php">Log In Here</a></p>
                 </form>
             </div>
+            <div class="col-md-4"></div>
         </div>
-        
+
         <div id="main" style="text-align:center;">
-              
-              <?php
-  include './components/footer.php';
-  ?>
-    </body>
+
+            <div id="footer" class=" w3-center w3-bottom w3-green" style="padding:10px">
+                Crop Farmer's Advisory System: Copyright &copy; 2023
+            </div>
+</body>
+
 </html>
 <script type="text/javascript">
 function validateForm() {
     var x = document.forms["myForm"]["password_1"].value;
     var y = document.forms["myForm"]["password_2"].value;
-    if (x !== y ) {
+    if (x !== y) {
         alert("password must be the same");
         return true;
     }
