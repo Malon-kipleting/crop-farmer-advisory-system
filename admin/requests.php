@@ -42,7 +42,6 @@ include './components/navbar.php';
                                             <th>Farmer Name</th>
                                             <th>Farmer Email</th>
                                             <th>Farmer Phone</th>
-                                            <th>Request Status</th>
                                             <th>Date Submitted</th>
                                             <th>Action</th>
                                         </tr>
@@ -85,7 +84,6 @@ include './components/navbar.php';
       echo "<td>" . $farmer_fname." ". $farmer_lname."</td>";
       echo "<td>" .$farmer_email."</td>";
       echo "<td>" .$farmer_phone."</td>";
-      echo "<td>" .$status."</td>";
       echo "<td>" .$date_submitted."</td>";
       echo "<td>
         
@@ -93,19 +91,19 @@ include './components/navbar.php';
       <input  type='text' readonly hidden name='request_id' value='$req_id'>
       <input  type='text' readonly hidden name='fname' value='$farmer_fname'>
       <input  type='text' readonly hidden name='lname' value='$farmer_lname'>
-      <input  type='text' readonly hidden name='adm_mail' value='$farmer_email'>
-      <input  type='text' readonly hidden name='adm_phone' value='$farmer_phone'>
+      <input  type='text' readonly hidden name='farmer_mail' value='$farmer_email'>
+      <input  type='text' readonly hidden name='farmer_phone' value='$farmer_phone'>
       <input  type='text' readonly hidden name='shrt_desc' value='$desc'>
       <input  type='text' readonly hidden name='req_status' value='$status'>
       <input  type='text' readonly hidden name='farm_id' value='$farm_id'>
       <input  type='text' readonly hidden name='farm_name' value='$farm_name'>
       <input  type='text' readonly hidden name='crop_id' value='$crop_id'>
-      <input  type='text' readonly hidden name='crop_id' value='$crop_name'>
+      <input  type='text' readonly hidden name='crop_name' value='$crop_name'>
       <input  type='text' readonly hidden name='activity_id' value='$activity_id'>
       <input  type='text' readonly hidden name='activity_name' value='$activity_name'>
-      <input  type='text' readonly hidden name='activity_name' value='$county_id'>
-      <input  type='text' readonly hidden name='activity_name' value='$county_name'>
-      <input type='submit' data-id= '$req_id' value='View More'  class='btn btn-success viewRequestBtn'>
+      <input  type='text' readonly hidden name='county_id' value='$county_id'>
+      <input  type='text' readonly hidden name='county_name' value='$county_name'>
+      <input type='submit' data-id= '$req_id' value='View More' name='view-request-btn' class='btn btn-success viewRequestBtn'>
       </form>
       </td> </tr>";
       }
@@ -126,7 +124,6 @@ include './components/navbar.php';
                                             <th>Farmer Name</th>
                                             <th>Farmer Email</th>
                                             <th>Farmer Phone</th>
-                                            <th>Request Status</th>
                                             <th>Date Submitted</th>
                                             <th>Action</th>
                                         </tr>

@@ -74,8 +74,8 @@ if (isset($_POST['get_advice_btn'])) {
 
   if (count($errors) == 0) {
    
-    $request_query = "INSERT INTO `farmer_request_advice_details`(`request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`)
-     VALUES ('$requestId','$farmer','$farm_id','$crop_id','$activity_id','$request_message')";
+    $request_query = "INSERT INTO `farmer_request_advice_details`(`request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`,`date_of_activity`)
+     VALUES ('$requestId','$farmer','$farm_id','$crop_id','$activity_id','$request_message','$date')";
     $request_results = mysqli_query($db, $request_query);
 
     $advice_query = "INSERT INTO `request_response_details`(`request_id`, `request_status`, `response`) VALUES ('$requestId','Pending','No Response Yet!')";

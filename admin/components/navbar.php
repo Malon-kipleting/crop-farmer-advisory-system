@@ -7,7 +7,7 @@
             <div class="w3-bar w3-black" style="padding:20px;font-size:20px;">
                 <!-- w3-gray -->
                 <a href="home.php" class="w3-bar-item w3-button">Dashboard</a>
-                <a href="requests.php" class="w3-bar-item w3-button ">Requests</a>
+                <a href="requests.php" class="w3-bar-item w3-button">Requests</a>
                 <a href="farms.php" class="w3-bar-item w3-button">Reports</a>
                 <a href="update.php" class="w3-bar-item w3-button">Profile</a>
 
