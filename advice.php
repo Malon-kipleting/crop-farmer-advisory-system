@@ -82,8 +82,8 @@ if (isset($_POST['get_advice_btn'])) {
     $advice_result = mysqli_query($db, $advice_query);
     
     header('location: response.php');
-  }else{
-    array_push($errors, "unable to push requests");
+  }else{ 
+    array_push($errors, "unable to submit request");
     header('location: advice.php');
   }
   
