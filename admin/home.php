@@ -35,7 +35,7 @@ include './components/navbar.php';
             </div>
 
             <div class="col-md-4">
-                <a href="./farmers.php">
+                <a href="./reports.php">
                     <div class="card card-hover">
                         <div class="box bg-success text-center p-2">
                             <h1 class="font-light text-white">
