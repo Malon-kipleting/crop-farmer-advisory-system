@@ -7,7 +7,7 @@ $name = $_SESSION['adm_fname']. " ". $_SESSION['adm_lname'];
 <html>
 
 <head>
-    <title>Home</title>
+    <title>Home | Admin</title>
     <?php
   include './components/header.php';
   ?>
