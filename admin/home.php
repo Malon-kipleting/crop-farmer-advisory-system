@@ -47,22 +47,6 @@ include './components/navbar.php';
                 </a>
             </div>
 
-            <div class="col-md-4">
-                <a href="./users.php">
-                    <div class="card card-hover">
-                        <div class="box bg-secondary text-center p-2">
-                            <h1 class="font-light text-white">
-                                <i class="fa fa-user-group"></i>
-                            </h1>
-                            <h6 class="text-white">Users</h6>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
-        <div class="row pl-3 pr-3 pt-3">
 
             <div class="col-md-4">
                 <a href="./update.php">
@@ -76,7 +60,11 @@ include './components/navbar.php';
                     </div>
                 </a>
             </div>
+
         </div>
+
+
+
         <?php
 include './components/footer.php';
   ?>
