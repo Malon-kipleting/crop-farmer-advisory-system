@@ -30,7 +30,7 @@ if (isset($_POST['printReportBtn'])) {
     $pdf->SetFont('Arial', 'B', 16);
     $pdf->Cell(0, 50, '', 0, 1, 'C');
     $pdf->Cell(0, 10, 'National Agricultural Advisory Services', 0, 1, 'C');
-    $pdf->Cell(0, 10, 'Report Details', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Farmer Report Details', 0, 1, 'C');
 
     // Set the font and font size for the table headers
     $pdf->SetFont('Arial', 'B', 12);
@@ -47,7 +47,9 @@ if (isset($_POST['printReportBtn'])) {
     $sql = "SELECT * FROM farmer_request_advice_details 
     INNER JOIN request_response_details ON farmer_request_advice_details.request_id = request_response_details.request_id
     INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
+    INNER JOIN farmer_details ON farmer_details.farmer_id = farmer_request_advice_details.farmer_id
     INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
+    INNER JOIN extension_officer ON extension_officer.officer_id = request_response_details.officer_id
     WHERE request_response_details.request_id = '$requestID' AND farmer_request_advice_details.farmer_id ='$farmerID'";
     $result = mysqli_query($db, $sql);
 
@@ -80,6 +82,12 @@ if (isset($_POST['printReportBtn'])) {
         $pdf->Cell(0, 10, 'Advice:', 0, 1, 'L');
         $pdf->SetFont('Arial', '', 10);
         $pdf->MultiCell(0, 10, $row['response'], 1);
+
+        //new line
+        $pdf->Ln();
+        $pdf->Cell(0, 10, 'Served By:', 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(0, 10, $row['first_name']." ".$row['last_name']." on ".$row['date_added'], 0, 1);
     }
 }
 
@@ -95,7 +103,7 @@ if (isset($_POST['printReportBtn'])) {
 
 <head>
 
-    <title>Responses</title>
+    <title>Reports | Farmer</title>
     <?php
 include './components/header.php';
 ?>

@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Log In</title>
+    <title>Log in to your Account</title>
     <?php
 include './components/header.php';
 ?>

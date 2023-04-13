@@ -97,7 +97,7 @@ if (isset($_POST['get_advice_btn'])) {
 
 <head>
 
-    <title>Get Advice</title>
+    <title>Get Advice | Farmer</title>
     <?php
 include './components/header.php';
 ?>

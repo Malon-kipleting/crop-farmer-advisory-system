@@ -30,7 +30,7 @@ if (isset($_POST['printReportBtn'])) {
     $pdf->SetFont('Arial', 'B', 16);
     $pdf->Cell(0, 50, '', 0, 1, 'C');
     $pdf->Cell(0, 10, 'National Agricultural Advisory Services', 0, 1, 'C');
-    $pdf->Cell(0, 10, 'Report Details', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Extension Officer Report Details', 0, 1, 'C');
 
     // Set the font and font size for the table headers
     $pdf->SetFont('Arial', 'B', 12);

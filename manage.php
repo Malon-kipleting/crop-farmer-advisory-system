@@ -80,8 +80,7 @@ if (isset($_POST['add_farm_btn'])) {
 <html>
 
 <head>
-
-    <title>Manage farm</title>
+    <title>Add Farm | Farmer</title>
     <?php
 include './components/header.php';
 ?>

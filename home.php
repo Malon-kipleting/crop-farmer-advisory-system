@@ -7,7 +7,7 @@ $name =  $_SESSION['farmerFname'] . " ". $_SESSION['farmerLname'];
 <html>
 
 <head>
-    <title>Home</title>
+    <title>Home | Farmer</title>
     <?php
   include './components/header.php';
   ?>

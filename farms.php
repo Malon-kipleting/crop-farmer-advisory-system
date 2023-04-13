@@ -60,7 +60,7 @@ if (isset($_POST['update-farm-details-btn'])) {
 
 <head>
 
-    <title>My Farms</title>
+    <title>My Farms | Farmer</title>
     <?php
 include './components/header.php';
 ?>
