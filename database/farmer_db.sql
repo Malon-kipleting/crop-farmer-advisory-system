@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2023 at 09:34 PM
+-- Generation Time: Apr 13, 2023 at 10:41 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -131,7 +131,7 @@ CREATE TABLE `farmer_details` (
 --
 
 INSERT INTO `farmer_details` (`id`, `farmer_id`, `farmer_fname`, `farmer_lname`, `farmer_email`, `farmer_phone`, `Gender`, `farmer_password`, `date_added`) VALUES
-(1, '37505349', 'Charles', 'Otieno', 'charles.o@blinx.co.ke', '0758413462', 'Male', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2023-03-04 12:06:21'),
+(1, '37505349', 'Charles', 'Otieno', 'charles.o@blinx.co.ke', '0758413462', 'Male', 'a5410ee37744c574ba5790034ea08f79', '2023-03-04 12:06:21'),
 (2, '37756501', 'Malon', 'Kipleting', 'malonkipleting790@gmail.com', '0713447936', 'Male', 'f74d8ed4e85c18a2ecccf397d5a60c33', '2023-03-04 12:06:21');
 
 -- --------------------------------------------------------
@@ -240,7 +240,7 @@ CREATE TABLE `request_response_details` (
   `officer_id` varchar(100) DEFAULT NULL,
   `response` longtext DEFAULT 'No Response Yet.',
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -248,8 +248,8 @@ CREATE TABLE `request_response_details` (
 --
 
 INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
-(1, 'n5nHLqX', 'PF01', 'DAP (Diammonium Phosphate) - contains nitrogen and phosphorus and is recommended for planting maize in soils that are deficient in these nutrients.\r\n\r\nCAN (Calcium Ammonium Nitrate) - contains nitrogen and calcium and is recommended for soils that are deficient in nitrogen.\r\n\r\nNPK (Nitrogen, Phosphorus, and Potassium) - contains a balanced ratio of the three major nutrients and is suitable for maize in soils with low nutrient levels.\r\n\r\n', 'Responded', '2023-04-11 17:12:31'),
-(2, 'UCym9te', NULL, 'No Response Yet!', 'Pending', '2023-04-13 22:13:01');
+(1, 'n5nHLqX', 'PF01', 'DAP (Diammonium Phosphate) - contains nitrogen and phosphorus and is recommended for planting maize in soils that are deficient in these nutrients.\r\n\r\nCAN (Calcium Ammonium Nitrate) - contains nitrogen and calcium and is recommended for soils that are deficient in nitrogen.\r\n\r\nNPK (Nitrogen, Phosphorus, and Potassium) - contains a balanced ratio of the three major nutrients and is suitable for maize in soils with low nutrient levels.\r\n\r\n', 'Responded', '2023-04-11 14:12:31'),
+(2, 'UCym9te', NULL, 'No Response Yet!', 'Pending', '2023-04-13 19:13:01');
 
 -- --------------------------------------------------------
 

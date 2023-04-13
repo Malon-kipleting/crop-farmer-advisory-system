@@ -11,7 +11,7 @@ if (isset($_POST['printReportBtn'])) {
     // Set the content type as a downloadable PDF file
     header('Content-Type: application/pdf');
     // Set the file name
-    header('Content-Disposition: attachment; filename="report_details.pdf"');
+    header('Content-Disposition: attachment; filename="officer_report_details.pdf"');
 
     // Include the necessary files for creating a PDF
     require('fpdf/fpdf.php');
@@ -95,7 +95,7 @@ if (isset($_POST['printReportBtn'])) {
 
   // Close the database connection and output the PDF
   mysqli_close($db);
-  $pdf->Output('D', 'report_details.pdf');
+  $pdf->Output('D', 'officer_report_details.pdf');
 }
 
 
