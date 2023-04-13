@@ -19,18 +19,19 @@ if (isset($_POST['submit-advice-btn'])) {
     }
 
     if (count($errors) == 0) {
-        $insert_query = "INSERT INTO `request_response_details`(`officer_id`) VALUES ('$officer_id ') WHERE request_id`='$request_id'";
+
+        $insert_query = "UPDATE `request_response_details` SET `officer_id`='$officer_id',`response`='$request_response',`request_status`='Responded' WHERE `request_id`='$request_id'";
         $result = mysqli_query($db, $insert_query);
 
-        // $response_query = "UPDATE `request_response_details` SET `officer_id`='$officer_id',`response`='$request_response',`request_status`='Responded' WHERE request_id`='$request_id'";
-        // $response_results = mysqli_query($db, $response_query);
-        
-        header('location: requests.php');
-    }else{ 
-        array_push($errors, "unable to update details");
-        header('location: view-request.php');
-    }
+        if ($result) {
+            header('location: requests.php');
+            exit();
+        } else {
+            $errors[] = "Unable to update details";
+            header('location: view-request.php');
+        }
 
+    }
 }
 ?>
 

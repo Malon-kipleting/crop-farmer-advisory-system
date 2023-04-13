@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2023 at 04:44 PM
+-- Generation Time: Apr 13, 2023 at 09:34 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -180,7 +180,8 @@ CREATE TABLE `farmer_request_advice_details` (
 --
 
 INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_of_activity`, `date_added`) VALUES
-(1, 'n5nHLqX', '37505349', 'FRM-K9BNEX', 'CRP01', 'ACT01', 'which is the best fertilizer to use during planting', '2023-04-17', '2023-04-11 17:12:31');
+(1, 'n5nHLqX', '37505349', 'FRM-K9BNEX', 'CRP01', 'ACT01', 'which is the best fertilizer to use during planting', '2023-04-17', '2023-04-11 17:12:31'),
+(2, 'UCym9te', '37756501', 'FRM-AGOH65', 'CRP02', 'ACT01', 'advice me how i should go about this', '2023-04-20', '2023-04-13 22:13:01');
 
 -- --------------------------------------------------------
 
@@ -215,10 +216,17 @@ INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm
 
 CREATE TABLE `farm_soil_details` (
   `id` int(11) NOT NULL,
-  `soilID` varchar(255) NOT NULL,
-  `farmID` varchar(255) NOT NULL,
+  `soil_id` varchar(255) NOT NULL,
+  `farm_id` varchar(255) NOT NULL,
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `farm_soil_details`
+--
+
+INSERT INTO `farm_soil_details` (`id`, `soil_id`, `farm_id`, `date_updated`) VALUES
+(1, 'soil_02', 'FRM-ESY9TW', '2023-04-13 18:27:39');
 
 -- --------------------------------------------------------
 
@@ -230,7 +238,7 @@ CREATE TABLE `request_response_details` (
   `id` int(11) NOT NULL,
   `request_id` varchar(100) NOT NULL,
   `officer_id` varchar(100) DEFAULT NULL,
-  `response` varchar(255) NOT NULL DEFAULT 'No Response Yet. Check Later',
+  `response` longtext DEFAULT 'No Response Yet.',
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -240,7 +248,8 @@ CREATE TABLE `request_response_details` (
 --
 
 INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
-(1, 'n5nHLqX', NULL, 'No Response Yet!', 'Pending', '2023-04-11 17:12:31');
+(1, 'n5nHLqX', 'PF01', 'DAP (Diammonium Phosphate) - contains nitrogen and phosphorus and is recommended for planting maize in soils that are deficient in these nutrients.\r\n\r\nCAN (Calcium Ammonium Nitrate) - contains nitrogen and calcium and is recommended for soils that are deficient in nitrogen.\r\n\r\nNPK (Nitrogen, Phosphorus, and Potassium) - contains a balanced ratio of the three major nutrients and is suitable for maize in soils with low nutrient levels.\r\n\r\n', 'Responded', '2023-04-11 17:12:31'),
+(2, 'UCym9te', NULL, 'No Response Yet!', 'Pending', '2023-04-13 22:13:01');
 
 -- --------------------------------------------------------
 
@@ -260,10 +269,11 @@ CREATE TABLE `soil_details` (
 --
 
 INSERT INTO `soil_details` (`id`, `soil_id`, `soil_name`, `date_added`) VALUES
-(1, 'SOIL_01', 'Loam Soil', '2023-04-11 17:22:18'),
-(2, 'SOIL_02', 'Sandy Soil', '2023-04-11 17:22:18'),
-(3, 'SOIL_03', 'Clay Soil', '2023-04-11 17:23:08'),
-(4, 'SOIL_04', 'Peat Soil', '2023-04-11 17:23:08');
+(1, 'soil_01', 'Loam Soil', '2023-04-13 21:24:06'),
+(2, 'soil_02', 'Sandy Soil', '2023-04-13 21:24:06'),
+(3, 'soil_03', 'Peat Soil', '2023-04-13 21:25:00'),
+(4, 'soil_04', 'Clay Soil', '2023-04-13 21:25:00'),
+(5, 'soil_05', 'Silty Soil', '2023-04-13 21:25:43');
 
 --
 -- Indexes for dumped tables
@@ -337,8 +347,8 @@ ALTER TABLE `farm_details`
 --
 ALTER TABLE `farm_soil_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `slid` (`soilID`),
-  ADD KEY `frmID` (`farmID`);
+  ADD KEY `soil_id` (`soil_id`),
+  ADD KEY `farm_id` (`farm_id`);
 
 --
 -- Indexes for table `request_response_details`
@@ -399,7 +409,7 @@ ALTER TABLE `farmer_owner_details`
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
@@ -411,19 +421,19 @@ ALTER TABLE `farm_details`
 -- AUTO_INCREMENT for table `farm_soil_details`
 --
 ALTER TABLE `farm_soil_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
 --
 ALTER TABLE `soil_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
