@@ -119,7 +119,8 @@ include './components/navbar.php';
                     <div class="card-body">
                         <h5 class="card-title">Get Advice</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary" onclick="myFunction('Demo3')">Get Advice</a>
+                        <a href="#" class="btn btn-primary" id="open-get-advice-form" onclick="myFunction('Demo3')">Open
+                            Form</a>
                     </div>
                     <hr>
                     <div id="Demo3" class="w3-accordion-content w3-content p-2">
@@ -220,6 +221,20 @@ include './components/footer.php';
         function myFunction(id) {
             document.getElementById(id).classList.toggle("w3-show");
         }
+
+        //Update Button Opening form
+        let open_get_advice_btn = document.getElementById('open-get-advice-form');
+        open_get_advice_btn.addEventListener('click', () => {
+            if (open_get_advice_btn.classList.contains('btn-primary')) {
+                open_get_advice_btn.classList.remove('btn-primary');
+                open_get_advice_btn.classList.add('btn-danger');
+                open_get_advice_btn.textContent = 'Close Form';
+            } else if (open_get_advice_btn.classList.contains('btn-danger')) {
+                open_get_advice_btn.classList.remove('btn-danger');
+                open_get_advice_btn.classList.add('btn-primary');
+                open_get_advice_btn.textContent = 'Open Form';
+            }
+        });
         </script>
         <?php
 include './components/scripts.php';
