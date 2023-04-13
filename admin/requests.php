@@ -72,6 +72,7 @@ include './components/navbar.php';
               $desc= $row['short_description'];
               $farm_id= $row['farm_id'];
               $farm_name= $row['farm_name'];
+              $farm_size= $row['farm_size'];
               $crop_id= $row['crop_id'];
               $crop_name= $row['crop_name'];
               $activity_id= $row['activity_id'];
@@ -97,6 +98,7 @@ include './components/navbar.php';
       <input  type='text' readonly hidden name='req_status' value='$status'>
       <input  type='text' readonly hidden name='farm_id' value='$farm_id'>
       <input  type='text' readonly hidden name='farm_name' value='$farm_name'>
+      <input  type='text' readonly hidden name='farm_size' value='$farm_size'>
       <input  type='text' readonly hidden name='crop_id' value='$crop_id'>
       <input  type='text' readonly hidden name='crop_name' value='$crop_name'>
       <input  type='text' readonly hidden name='activity_id' value='$activity_id'>

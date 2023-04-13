@@ -133,6 +133,7 @@ if (isset($_POST['view-request-btn'])) {
   $status = $_POST['req_status'];
   $farm_id = $_POST['farm_id'];
   $farm_name = $_POST['farm_name'];
+  $farm_size = $_POST['farm_size'];
   $crop_id = $_POST['crop_id'];
   $crop_name = $_POST['crop_name'];
   $activity_id = $_POST['activity_id'];
@@ -167,6 +168,9 @@ if (isset($_POST['view-request-btn'])) {
   if (empty($farm_name)) {
     array_push($errors, "farm name is required");
   }
+  if (empty($farm_size)) {
+    array_push($errors, "farm name is required");
+  }
   if (empty($crop_id)) {
     array_push($errors, "crop id is required");
   }
@@ -196,6 +200,7 @@ if (isset($_POST['view-request-btn'])) {
     $_SESSION['request_status'] = $status;
     $_SESSION['farm_ID'] = $farm_id;
     $_SESSION['farm_Name'] = $farm_name;
+    $_SESSION['farm_size'] = $farm_size;
     $_SESSION['crop_ID'] = $crop_id;
     $_SESSION['crop_Name'] =$crop_name;
     $_SESSION['activity_ID'] = $activity_id;
