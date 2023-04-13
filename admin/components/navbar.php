@@ -8,7 +8,7 @@
                 <!-- w3-gray -->
                 <a href="home.php" class="w3-bar-item w3-button">Dashboard</a>
                 <a href="requests.php" class="w3-bar-item w3-button">Requests</a>
-                <a href="farms.php" class="w3-bar-item w3-button">Reports</a>
+                <a href="reports.php" class="w3-bar-item w3-button">Reports</a>
                 <a href="update.php" class="w3-bar-item w3-button">Profile</a>
 
                 <div class="w3-bar-item w3-right" style="font-size:24px">

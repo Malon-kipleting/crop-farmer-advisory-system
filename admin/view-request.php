@@ -53,8 +53,8 @@ include './components/navbar.php';
 ?>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 border border-info rounded p-3  mb-3">
-                <form method="POST" action="" class="p-4">
+            <div class="col-md-8 border border-info rounded p-2 mb-5">
+                <form method="POST" action="" class="p-3">
                     <div class="form-group">
                         <input type="text" class="form-control" name="admin_id" required id="inputEmail4" readonly
                             value="<?php echo $officer_id; ?>">
