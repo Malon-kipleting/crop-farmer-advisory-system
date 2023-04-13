@@ -36,9 +36,10 @@ if (isset($_POST['printReportBtn'])) {
     $pdf->SetFont('Arial', 'B', 12);
 
     // Write the headers of the table
-    $pdf->Cell(40, 10, 'Request ID', 1);
-    $pdf->Cell(60, 10, 'Farm Name', 1);
-    $pdf->Cell(50, 10, 'Farm Location', 1);
+    $pdf->Cell(30, 10, 'Request ID', 1);
+    $pdf->Cell(40, 10, "Farmer's Name", 1);
+    $pdf->Cell(40, 10, 'Farm Name', 1);
+    $pdf->Cell(40, 10, 'Farm Location', 1);
     $pdf->Cell(40, 10, 'Status', 1);
     $pdf->Ln();
 
@@ -47,8 +48,10 @@ if (isset($_POST['printReportBtn'])) {
     $sql = "SELECT * FROM farmer_request_advice_details 
     INNER JOIN request_response_details ON farmer_request_advice_details.request_id = request_response_details.request_id
     INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
+    INNER JOIN farmer_details ON farmer_details.farmer_id = farmer_request_advice_details.farmer_id
     INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
-    WHERE request_response_details.request_id = '$requestID' AND farmer_request_advice_details.farmer_id ='$farmerID'";
+    INNER JOIN extension_officer ON extension_officer.officer_id = request_response_details.officer_id
+    WHERE request_response_details.request_id = '$requestID' AND request_response_details.officer_id ='$officer_id'";
     $result = mysqli_query($db, $sql);
 
     // Set the font and font size for the table rows
@@ -58,9 +61,10 @@ if (isset($_POST['printReportBtn'])) {
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         // Write the data to the table
-        $pdf->Cell(40, 10, $row['request_id'], 1);
-        $pdf->Cell(60, 10, $row['farm_name'], 1);
-        $pdf->Cell(50, 10, $row['county_name']." "."County", 1);
+        $pdf->Cell(30, 10, $row['request_id'], 1);
+        $pdf->Cell(40, 10, $row['farmer_fname'] ." ".$row['farmer_lname'], 1);
+        $pdf->Cell(40, 10, $row['farm_name'], 1);
+        $pdf->Cell(40, 10, $row['county_name']." "."County", 1);
         $pdf->Cell(40, 10, $row['request_status'], 1);
 
         //2 new lines
@@ -80,6 +84,12 @@ if (isset($_POST['printReportBtn'])) {
         $pdf->Cell(0, 10, 'Advice:', 0, 1, 'L');
         $pdf->SetFont('Arial', '', 10);
         $pdf->MultiCell(0, 10, $row['response'], 1);
+        
+        //new line
+        $pdf->Ln();
+        $pdf->Cell(0, 10, 'Served By:', 0, 1, 'L');
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(0, 10, $row['first_name']." ".$row['last_name']." on ".$row['date_added'], 0, 1);
     }
 }
 
