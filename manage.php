@@ -54,6 +54,7 @@ if (isset($_POST['add_farm_btn'])) {
   $farmlocation = $_POST['county_id'];
   $farmsize = $_POST['farm_size'];
   $owner_id = $_POST['owner_id'];
+  $soil_id = $_POST['soil_id'];
 
   if (empty($farmname)) {
     array_push($errors, "Farm name is required");
@@ -64,9 +65,12 @@ if (isset($_POST['add_farm_btn'])) {
   if (empty($farmsize)) {
     array_push($errors, "Input farm size");
   }
+  if (empty($soil_id)) {
+    array_push($errors, "soild id is required");
+  }
   if (count($errors) == 0) {
    
-    $add_farm_query = "INSERT INTO `farm_details`(`farm_id`, `farm_name`, `farm_location`, `farm_size`)VALUES ('$farm_id','$farmname','$farmlocation','$farmsize')";
+    $add_farm_query = "INSERT INTO `farm_details`(`farm_id`, `farm_name`, `farm_location`, `farm_size`, `soil_id`)VALUES ('$farm_id','$farmname','$farmlocation','$farmsize','$soil_id')";
     $results = mysqli_query($db, $add_farm_query);
 
     $update_owner_query = "INSERT INTO `farmer_owner_details`(`farm_id`, `owner_id`) VALUES ('$farm_id','$owner_id')";
@@ -111,8 +115,8 @@ include './components/navbar.php';
                             <h2 class="text-center">Farm Details</h2>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Farm Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" hidden
-                                    autocomplete="false" name="owner_id" aria-describedby="emailHelp" readonly
+                                <input type="text" class="form-control" id="exampleInputfarmer" hidden
+                                    autocomplete="false" name="owner_id" aria-describedby="farmerHelp" readonly
                                     value="<?php echo $farmer_id; ?>" required>
                                 <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="false"
                                     name="farm_name" aria-describedby="emailHelp" placeholder="Enter farm name"
@@ -129,6 +133,22 @@ include './components/navbar.php';
     ?>
                                     <option value="<?php echo htmlentities($rw['county_id']);?>">
                                         <?php echo htmlentities($rw['county_name']);?> County</option>
+                                    <?php
+    }
+    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Soil Type</label>
+                                <select class="form-control" id="soil_id" name="soil_id" required>
+                                    <option value="">Select Soil Type..</option>
+                                    <?php 
+    // Retrieve the departments from the database
+    $sql=mysqli_query($db,"select * from soil_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+                                    <option value="<?php echo htmlentities($rw['soil_id']);?>">
+                                        <?php echo htmlentities($rw['soil_name']);?></option>
                                     <?php
     }
     ?>
