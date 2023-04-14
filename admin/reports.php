@@ -87,7 +87,7 @@ if (isset($_POST['printReportBtn'])) {
         
         //new line
         $pdf->Ln();
-        $pdf->Cell(0, 10, 'Served By:', 0, 1, 'L');
+        $pdf->Cell(0, 10, 'Regards:', 0, 1, 'L');
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(0, 10, $row['first_name']." ".$row['last_name']." on ".$row['date_added'], 0, 1);
     }

@@ -238,7 +238,7 @@ CREATE TABLE `request_response_details` (
   `id` int(11) NOT NULL,
   `request_id` varchar(100) NOT NULL,
   `officer_id` varchar(100) DEFAULT NULL,
-  `response` longtext DEFAULT 'No Response Yet.',
+  `response` longtext,
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
