@@ -39,10 +39,10 @@ if (isset($_POST['printReportBtn'])) {
     $pdf->Cell(30, 10, 'Request ID', 1);
     $pdf->Cell(40, 10, "Farmer's Name", 1);
     $pdf->Cell(40, 10, 'Farm Name', 1);
+    $pdf->Cell(40, 10, 'Farm Soil Type', 1);
     $pdf->Cell(40, 10, 'Farm Location', 1);
-    $pdf->Cell(40, 10, 'Status', 1);
-    $pdf->Ln();
 
+    $pdf->Ln();
 
     // Query to get the school details
     $sql = "SELECT * FROM farmer_request_advice_details 
@@ -51,6 +51,7 @@ if (isset($_POST['printReportBtn'])) {
     INNER JOIN farmer_details ON farmer_details.farmer_id = farmer_request_advice_details.farmer_id
     INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
     INNER JOIN extension_officer ON extension_officer.officer_id = request_response_details.officer_id
+    INNER JOIN soil_details ON soil_details.soil_id = farm_details.soil_id
     WHERE request_response_details.request_id = '$requestID' AND request_response_details.officer_id ='$officer_id'";
     $result = mysqli_query($db, $sql);
 
@@ -64,8 +65,8 @@ if (isset($_POST['printReportBtn'])) {
         $pdf->Cell(30, 10, $row['request_id'], 1);
         $pdf->Cell(40, 10, $row['farmer_fname'] ." ".$row['farmer_lname'], 1);
         $pdf->Cell(40, 10, $row['farm_name'], 1);
+        $pdf->Cell(40, 10, $row['soil_name'], 1);
         $pdf->Cell(40, 10, $row['county_name']." "."County", 1);
-        $pdf->Cell(40, 10, $row['request_status'], 1);
 
         //2 new lines
         $pdf->Ln();
@@ -132,7 +133,6 @@ include './components/navbar.php';
                                     <th>Farmer Phone</th>
                                     <th>Farm Name</th>
                                     <th>Farm Location</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -144,6 +144,7 @@ include './components/navbar.php';
       INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
       INNER JOIN farmer_details ON  farmer_details.farmer_id = farmer_request_advice_details.farmer_id
       INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
+      INNER JOIN soil_details ON soil_details.soil_id = farm_details.soil_id
       WHERE request_response_details.officer_id = '$officer_id'";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
@@ -161,6 +162,7 @@ include './components/navbar.php';
               $county_name = $row['county_name'];
               $description = $row['short_description'];
               $status= $row['request_status'];
+              $soil_name= $row['soil_name'];
 
 
       echo "<tr> <td>" .$request_id.  "</td>";
@@ -169,7 +171,6 @@ include './components/navbar.php';
       echo "<td>" .$farmer_tel."</td>";
       echo "<td>" .$farm_name."</td>";
       echo "<td>" . $county_name."</td>";
-      echo "<td>" .$status."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
@@ -198,7 +199,6 @@ include './components/navbar.php';
                                     <th>Farmer Phone</th>
                                     <th>Farm Name</th>
                                     <th>Farm Location</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
