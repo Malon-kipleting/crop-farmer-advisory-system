@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 13, 2023 at 11:11 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Host: localhost:3306
+-- Generation Time: Apr 14, 2023 at 10:46 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,8 +32,8 @@ CREATE TABLE `activity_details` (
   `id` int(11) NOT NULL,
   `activity_id` varchar(100) NOT NULL,
   `activity_name` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `activity_details`
@@ -52,7 +53,7 @@ CREATE TABLE `county_details` (
   `id` int(11) NOT NULL,
   `county_id` varchar(20) NOT NULL,
   `county_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `county_details`
@@ -72,8 +73,8 @@ CREATE TABLE `crop_details` (
   `id` int(11) NOT NULL,
   `crop_id` varchar(20) NOT NULL,
   `crop_name` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `crop_details`
@@ -98,8 +99,8 @@ CREATE TABLE `extension_officer` (
   `officer_phone` varchar(50) NOT NULL,
   `Gender` varchar(50) NOT NULL,
   `officer_password` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `extension_officer`
@@ -123,8 +124,8 @@ CREATE TABLE `farmer_details` (
   `farmer_phone` varchar(50) NOT NULL,
   `Gender` varchar(50) NOT NULL,
   `farmer_password` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `farmer_details`
@@ -144,8 +145,8 @@ CREATE TABLE `farmer_owner_details` (
   `id` int(11) NOT NULL,
   `farm_id` varchar(100) NOT NULL,
   `owner_id` varchar(100) NOT NULL,
-  `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `farmer_owner_details`
@@ -155,7 +156,8 @@ INSERT INTO `farmer_owner_details` (`id`, `farm_id`, `owner_id`, `date_updated`)
 (7, 'FRM-ESY9TW', '37505349', '2023-04-10 13:29:03'),
 (8, 'FRM-K9BNEX', '37505349', '2023-04-10 13:29:20'),
 (9, 'FRM-Y0RYK1', '37756501', '2023-04-10 13:39:19'),
-(10, 'FRM-AGOH65', '37756501', '2023-04-10 13:39:42');
+(10, 'FRM-AGOH65', '37756501', '2023-04-10 13:39:42'),
+(11, 'FRM-GOXRKC', '37756501', '2023-04-14 10:45:24');
 
 -- --------------------------------------------------------
 
@@ -172,8 +174,8 @@ CREATE TABLE `farmer_request_advice_details` (
   `activity_id` varchar(100) NOT NULL,
   `short_description` varchar(800) NOT NULL,
   `date_of_activity` varchar(250) DEFAULT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `farmer_request_advice_details`
@@ -181,7 +183,8 @@ CREATE TABLE `farmer_request_advice_details` (
 
 INSERT INTO `farmer_request_advice_details` (`id`, `request_id`, `farmer_id`, `farm_id`, `crop_id`, `activity_id`, `short_description`, `date_of_activity`, `date_added`) VALUES
 (1, 'n5nHLqX', '37505349', 'FRM-K9BNEX', 'CRP01', 'ACT01', 'which is the best fertilizer to use during planting', '2023-04-17', '2023-04-11 17:12:31'),
-(2, 'UCym9te', '37756501', 'FRM-AGOH65', 'CRP02', 'ACT01', 'advice me how i should go about this', '2023-04-20', '2023-04-13 22:13:01');
+(2, 'UCym9te', '37756501', 'FRM-AGOH65', 'CRP02', 'ACT01', 'advice me how i should go about this', '2023-04-20', '2023-04-13 22:13:01'),
+(3, 'VgVBfSM', '37756501', 'FRM-AGOH65', 'CRP01', 'ACT02', 'hhjhjnjj', '2023-04-20', '2023-04-14 12:57:20');
 
 -- --------------------------------------------------------
 
@@ -195,18 +198,20 @@ CREATE TABLE `farm_details` (
   `farm_name` varchar(255) NOT NULL,
   `farm_location` varchar(255) NOT NULL,
   `farm_size` varchar(100) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `soil_id` varchar(255) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `farm_details`
 --
 
-INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `date_added`) VALUES
-(4, 'FRM-AGOH65', 'Sugoi Farm', 'county002', '10', '2023-04-10 13:39:41'),
-(1, 'FRM-ESY9TW', 'Mwala Farm', 'county002', '4', '2023-04-10 13:29:03'),
-(2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county001', '15', '2023-04-10 13:29:19'),
-(3, 'FRM-Y0RYK1', 'Yegen Farm', 'county001', '24', '2023-04-10 13:39:19');
+INSERT INTO `farm_details` (`id`, `farm_id`, `farm_name`, `farm_location`, `farm_size`, `soil_id`, `date_added`) VALUES
+(4, 'FRM-AGOH65', 'Sugoi Farm', 'county002', '10', 'soil_02', '2023-04-10 13:39:41'),
+(1, 'FRM-ESY9TW', 'Mwala Farm', 'county002', '4', 'soil_01', '2023-04-10 13:29:03'),
+(5, 'FRM-GOXRKC', 'Eldoret Farm', 'county002', '53', 'soil_03', '2023-04-14 10:45:24'),
+(2, 'FRM-K9BNEX', 'Munyiiki Farm', 'county001', '15', 'soil_05', '2023-04-10 13:29:19'),
+(3, 'FRM-Y0RYK1', 'Yegen Farm', 'county001', '24', 'soil_03', '2023-04-10 13:39:19');
 
 -- --------------------------------------------------------
 
@@ -218,15 +223,18 @@ CREATE TABLE `farm_soil_details` (
   `id` int(11) NOT NULL,
   `soil_id` varchar(255) NOT NULL,
   `farm_id` varchar(255) NOT NULL,
-  `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `farm_soil_details`
 --
 
 INSERT INTO `farm_soil_details` (`id`, `soil_id`, `farm_id`, `date_updated`) VALUES
-(1, 'soil_02', 'FRM-ESY9TW', '2023-04-13 18:27:39');
+(1, 'soil_02', 'FRM-AGOH65', '2023-04-13 18:27:39'),
+(2, 'soil_01', 'FRM-ESY9TW', '2023-04-14 10:21:19'),
+(3, 'soil_01', 'FRM-K9BNEX', '2023-04-14 10:22:12'),
+(4, 'soil_01', 'FRM-Y0RYK1', '2023-04-14 10:22:12');
 
 -- --------------------------------------------------------
 
@@ -240,8 +248,8 @@ CREATE TABLE `request_response_details` (
   `officer_id` varchar(100) DEFAULT NULL,
   `response` longtext,
   `request_status` varchar(255) NOT NULL DEFAULT 'Pending',
-  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `request_response_details`
@@ -249,7 +257,8 @@ CREATE TABLE `request_response_details` (
 
 INSERT INTO `request_response_details` (`id`, `request_id`, `officer_id`, `response`, `request_status`, `date_added`) VALUES
 (1, 'n5nHLqX', 'PF01', 'DAP (Diammonium Phosphate) - contains nitrogen and phosphorus and is recommended for planting maize in soils that are deficient in these nutrients.\r\n\r\nCAN (Calcium Ammonium Nitrate) - contains nitrogen and calcium and is recommended for soils that are deficient in nitrogen.\r\n\r\nNPK (Nitrogen, Phosphorus, and Potassium) - contains a balanced ratio of the three major nutrients and is suitable for maize in soils with low nutrient levels.\r\n\r\n', 'Responded', '2023-04-11 14:12:31'),
-(2, 'UCym9te', NULL, 'No Response Yet!', 'Pending', '2023-04-13 19:13:01');
+(2, 'UCym9te', NULL, 'No Response Yet!', 'Pending', '2023-04-13 19:13:01'),
+(3, 'VgVBfSM', 'PF01', 'hi', 'Responded', '2023-04-14 09:57:20');
 
 -- --------------------------------------------------------
 
@@ -261,8 +270,8 @@ CREATE TABLE `soil_details` (
   `id` int(11) NOT NULL,
   `soil_id` varchar(255) NOT NULL,
   `soil_name` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `soil_details`
@@ -340,7 +349,8 @@ ALTER TABLE `farmer_request_advice_details`
 ALTER TABLE `farm_details`
   ADD PRIMARY KEY (`farm_id`),
   ADD KEY `id` (`id`),
-  ADD KEY `farm_location` (`farm_location`);
+  ADD KEY `farm_location` (`farm_location`),
+  ADD KEY `bdfgj` (`soil_id`);
 
 --
 -- Indexes for table `farm_soil_details`
@@ -363,7 +373,8 @@ ALTER TABLE `request_response_details`
 --
 ALTER TABLE `soil_details`
   ADD PRIMARY KEY (`soil_id`),
-  ADD KEY `id` (`id`);
+  ADD KEY `id` (`id`),
+  ADD KEY `soil_id` (`soil_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -403,31 +414,31 @@ ALTER TABLE `farmer_details`
 -- AUTO_INCREMENT for table `farmer_owner_details`
 --
 ALTER TABLE `farmer_owner_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `farmer_request_advice_details`
 --
 ALTER TABLE `farmer_request_advice_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `farm_soil_details`
 --
 ALTER TABLE `farm_soil_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request_response_details`
 --
 ALTER TABLE `request_response_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `soil_details`
@@ -459,7 +470,8 @@ ALTER TABLE `farmer_request_advice_details`
 -- Constraints for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  ADD CONSTRAINT `locid` FOREIGN KEY (`farm_location`) REFERENCES `county_details` (`county_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `locid` FOREIGN KEY (`farm_location`) REFERENCES `county_details` (`county_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `slidfr` FOREIGN KEY (`soil_id`) REFERENCES `soil_details` (`soil_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `request_response_details`
