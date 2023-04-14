@@ -133,47 +133,53 @@ include './components/navbar.php';
                             </thead>
                             <tbody>
                                 <?php
-  if($farmer_id){
-      $data_fetch_query = "SELECT * FROM `farmer_request_advice_details`
-      INNER JOIN request_response_details ON request_response_details.request_id = farmer_request_advice_details.request_id
-      INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
-      INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
-      WHERE farmer_request_advice_details.farmer_id  = '$farmer_id'";
-      $data_result = mysqli_query($db, $data_fetch_query);
-      if ($data_result->num_rows > 0){
-          while($row = $data_result->fetch_assoc()) {
-              $request_id = $row['request_id'];
-              $farmer_id = $row['farmer_id'];
-              $farm_id = $row['farm_id'];
-              $farm_name = $row['farm_name'];
-              $crop_id = $row['crop_id'];
-              $activity_id = $row['activity_id'];
-              $county_name = $row['county_name'];
-              $description = $row['short_description'];
-              $status= $row['request_status'];
+if ($farmer_id) {
+    $data_fetch_query = "SELECT * FROM `farmer_request_advice_details`
+        INNER JOIN request_response_details ON request_response_details.request_id = farmer_request_advice_details.request_id
+        INNER JOIN farm_details ON farm_details.farm_id = farmer_request_advice_details.farm_id
+        INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
+        WHERE farmer_request_advice_details.farmer_id = '$farmer_id'";
+    $data_result = mysqli_query($db, $data_fetch_query);
+    if ($data_result->num_rows > 0) {
+        while ($row = $data_result->fetch_assoc()) {
+            $request_id = $row['request_id'];
+            $farmer_id = $row['farmer_id'];
+            $farm_id = $row['farm_id'];
+            $farm_name = $row['farm_name'];
+            $crop_id = $row['crop_id'];
+            $activity_id = $row['activity_id'];
+            $county_name = $row['county_name'];
+            $description = $row['short_description'];
+            $status = $row['request_status'];
+            $officer_id = $row['officer_id'];
 
+            $print_button = '';
+            if (!empty($officer_id)) {
+                $print_button = "<input type='submit' name='printReportBtn' value='Print Report' class='btn btn-info printReportBtn'>";
+            }else{
+                $print_button = "<input type='button'  value='No Report'disabled class='btn btn-warning printReportBtn'>"; 
+            }
 
-      echo "<tr> <td>" .$request_id.  "</td>";
-      echo "<td>" .$farm_name."</td>";
-      echo "<td>" . $county_name."</td>";
-      echo "<td>" .$status."</td>";
-      echo "<td>
-        
-      <form method ='POST' action=''>
-      <input  type='text' hidden readonly name='farmer_Id' value='$farmer_id'>
-      <input  type='text' hidden readonly name='request_Id' value='$request_id'>
-      <input type='submit' name='printReportBtn' value='Print Report'  class='btn btn-info printReportBtn'>
-      </form>
-      </td> </tr>";
-      }
-      
-      }else{
-      echo "<td>"."No Data Found"."</td>";
-      }
-      
-      } else{
-          echo "<td>"."No farms available"."</td>";
-      }
+            echo "<tr>";
+            echo "<td>" . $request_id . "</td>";
+            echo "<td>" . $farm_name . "</td>";
+            echo "<td>" . $county_name . "</td>";
+            echo "<td>" . $status . "</td>";
+            echo "<td>";
+            echo "<form method ='POST' action=''>";
+            echo "<input type='text' hidden readonly name='farmer_Id' value='$farmer_id'>";
+            echo "<input type='text' hidden readonly name='request_Id' value='$request_id'>";
+            echo $print_button;
+            echo "</form>";
+            echo "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<td>" . "No Data Found" . "</td>";
+    }
+} else {
+    echo "<td>" . "No farms available" . "</td>";
+}
 
 ?>
                             </tbody>
