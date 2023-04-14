@@ -37,9 +37,10 @@ if (isset($_POST['printReportBtn'])) {
 
     // Write the headers of the table
     $pdf->Cell(40, 10, 'Request ID', 1);
-    $pdf->Cell(60, 10, 'Farm Name', 1);
-    $pdf->Cell(50, 10, 'Farm Location', 1);
-    $pdf->Cell(40, 10, 'Status', 1);
+    $pdf->Cell(50, 10, 'Farm Name', 1);
+    $pdf->Cell(40, 10, 'Farm Location', 1);
+    $pdf->Cell(30, 10, 'Soil Type', 1);
+    $pdf->Cell(30, 10, 'Status', 1);
     $pdf->Ln();
 
 
@@ -50,6 +51,7 @@ if (isset($_POST['printReportBtn'])) {
     INNER JOIN farmer_details ON farmer_details.farmer_id = farmer_request_advice_details.farmer_id
     INNER JOIN county_details ON county_details.county_id = farm_details.farm_location
     INNER JOIN extension_officer ON extension_officer.officer_id = request_response_details.officer_id
+    INNER JOIN soil_details ON soil_details.soil_id = farm_details.soil_id
     WHERE request_response_details.request_id = '$requestID' AND farmer_request_advice_details.farmer_id ='$farmerID'";
     $result = mysqli_query($db, $sql);
 
@@ -61,9 +63,10 @@ if (isset($_POST['printReportBtn'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         // Write the data to the table
         $pdf->Cell(40, 10, $row['request_id'], 1);
-        $pdf->Cell(60, 10, $row['farm_name'], 1);
-        $pdf->Cell(50, 10, $row['county_name']." "."County", 1);
-        $pdf->Cell(40, 10, $row['request_status'], 1);
+        $pdf->Cell(50, 10, $row['farm_name'], 1);
+        $pdf->Cell(40, 10, $row['county_name']." "."County", 1);
+        $pdf->Cell(30, 10, $row['soil_name'], 1);
+        $pdf->Cell(30, 10, $row['request_status'], 1);
 
         //2 new lines
         $pdf->Ln();
